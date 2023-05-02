@@ -1,0 +1,226 @@
+{
+    "path": [
+        {
+            "id": 1,
+            "date": "26/04/2023",
+            "from": "Bordeaux",
+            "to": "San Sebastián",
+            "transportType": "Voiture",
+            "cost": 80,
+            "travelDuration": 4,
+            "hostingName": "Airbnb",
+            "hostingCost": 60,
+            "activities": [
+                {
+                    "id": 1,
+                    "type": "Nature et paysages",
+                    "name": "La Rhune",
+                    "description": "Randonnée au sommet de la Rhune pour admirer la vue panoramique sur les montagnes basques et l'océan",
+                    "location": "Sare",
+                    "cost": 10
+                },
+                {
+                    "id": 2,
+                    "type": "Architecture et design",
+                    "name": "La Cité de l'océan",
+                    "description": "Visite d'un musée interactif consacré à l'océan et à ses mystères",
+                    "location": "Biarrtiz",
+                    "cost": 20
+                },
+                {
+                    "id": 3,
+                    "type": "Vie nocturne",
+                    "name": "Le Caveau des Augustins",
+                    "description": "Bar à vins et à tapas dans une cave voûtée du XVIIIe siècle",
+                    "location": "Bayonne",
+                    "cost": 20
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "date": "27/04/2023",
+            "from": "San Sebastián",
+            "to": "Barcelone",
+            "transportType": "Voiture",
+            "cost": 100,
+            "travelDuration": 7,
+            "hostingName": "Booking",
+            "hostingCost": 70,
+            "activities": [
+                {
+                    "id": 1,
+                    "type": "Culture",
+                    "name": "La Sagrada Familia",
+                    "description": "Visite de la célèbre basilique de Gaudi, symbole de Barcelone",
+                    "location": "Barcelone",
+                    "cost": 30
+                },
+                {
+                    "id": 2,
+                    "type": "Architecture et design",
+                    "name": "Le Parc Güell",
+                    "description": "Promenade dans le parc Güell et découverte des œuvres de Gaudi",
+                    "location": "Barcelone",
+                    "cost": 10
+                },
+                {
+                    "id": 3,
+                    "type": "Vie nocturne",
+                    "name": "La Fira",
+                    "description": "Bar branché avec une vue imprenable sur la ville",
+                    "location": "Barcelone",
+                    "cost": 20
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "date": "01/05/2023",
+            "from": "Barcelone",
+            "to": "Valence",
+            "transportType": "Voiture",
+            "cost": 50,
+            "travelDuration": 5,
+            "hostingName": "Airbnb",
+            "hostingCost": 50,
+            "activities": [
+                {
+                    "id": 1,
+                    "type": "Culture",
+                    "name": "La Cité des arts et des sciences",
+                    "description": "Visite d'un complexe culturel et scientifique futuriste",
+                    "location": "Valence",
+                    "cost": 25
+                },
+                {
+                    "id": 2,
+                    "type": "Architecture et design",
+                    "name": "La Lonja de la Seda",
+                    "description": "Visite d'un bâtiment gothique de la fin du Moyen-Âge, inscrit au patrimoine mondial de l'UNESCO",
+                    "location": "Valence",
+                    "cost": 10
+                },
+                {
+                    "id": 3,
+                    "type": "Vie nocturne",
+                    "name": "La Fabrica de Hielo",
+                    "description": "Bar animé dans un ancien entrepôt de glace",
+                    "location": "Valence",
+                    "cost": 20
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "date": "05/05/2023",
+            "from": "Valence",
+            "to": "Grenade",
+            "transportType": "Voiture",
+            "cost": 80,
+            "travelDuration": 6,
+            "hostingName": "Airbnb",
+            "hostingCost": 60,
+            "activities": [
+                {
+                    "id": 1,
+                    "type": "Culture",
+                    "name": "L'Alhambra",
+                    "description": "Visite du palais mauresque de l'Alhambra, joyau de l'architecture islamique",
+                    "location": "Grenade",
+                    "cost": 30
+                },
+                {
+                    "id": 2,
+                    "type": "Nature et paysages",
+                    "name": "Le Sacromonte",
+                    "description": "Balade dans le quartier gitan du Sacromonte, célèbre pour ses maisons troglodytes",
+                    "location": "Grenade",
+                    "cost": 10
+                },
+                {
+                    "id": 3,
+                    "type": "Vie nocturne",
+                    "name": "La Tana",
+                    "description": "Bar à vins avec une ambiance conviviale et chaleureuse",
+                    "location": "Grenade",
+                    "cost": 20
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "date": "09/05/2023",
+            "from": "Grenade",
+            "to": "Séville",
+            "transportType": "Voiture",
+            "cost": 80,
+            "travelDuration": 5,
+            "hostingName": "Booking",
+            "hostingCost": 80,
+            "activities": [
+                {
+                    "id": 1,
+                    "type": "Culture",
+                    "name": "La cathédrale de Séville",
+                    "description": "Visite de la plus grande cathédrale gothique du monde",
+                    "location": "Séville",
+                    "cost": 20
+                },
+                {
+                    "id": 2,
+                    "type": "Nature et paysages",
+                    "name": "Le parc de María Luisa",
+                    "description": "Promenade dans le parc de María Luisa et découverte des pavillons de l'Exposition ibéro-américaine de 1929",
+                    "location": "Séville",
+                    "cost": 5
+                },
+                {
+                    "id": 3,
+                    "type": "Vie nocturne",
+                    "name": "El Garlochi",
+                    "description": "Bar à cocktails dans une ancienne chapelle",
+                    "location": "Séville",
+                    "cost": 20
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "date": "13/05/2023",
+            "from": "Séville",
+            "to": "Malaga",
+            "transportType": "Voiture",
+            "cost": 60,
+            "travelDuration": 3,
+            "hostingName": "Airbnb",
+            "hostingCost": 50,
+            "activities": [
+                {
+                    "id": 1,
+                    "type": "Nature et paysages",
+                    "name": "Le Caminito del Rey",
+                    "description": "Randonnée spectaculaire dans les gorges d'El Chorro",
+                    "location": "Malaga",
+                    "cost": 20
+                },
+                {
+                    "id": 2,
+                    "type": "Culture",
+                    "name": "Le musée Picasso",
+                    "description": "Visite du musée Picasso, installé dans un palais du XVIe siècle",
+                    "location": "Malaga",
+                    "cost": 15
+                },
+                {
+                    "id": 3,
+                    "type": "Vie nocturne",
+                    "name": "Le Pimpi",
+                    "description": "Bar à vin traditionnel avec une ambiance animée",
+                    "location": "Malaga",
+                    "cost": 20
+                }
+            ]
+        }
+    ]
+}

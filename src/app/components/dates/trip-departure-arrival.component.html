@@ -1,0 +1,33 @@
+<ng-container [formGroup]="form">
+    <div>
+        <span class="text-xl mr-4">Départ le :</span>
+        <mat-form-field appearance="fill">
+            <mat-label>JJ/MM/AAAA</mat-label>
+            <input matInput formControlName="start" [min]="minDepartureDate" [matDatepicker]="pickerDeparture"
+                (dateInput)="onDepartureDateChange($event)">
+            <mat-datepicker-toggle matIconSuffix [for]="pickerDeparture"></mat-datepicker-toggle>
+            <mat-datepicker #pickerDeparture></mat-datepicker>
+        </mat-form-field>
+        <span class="text-xl mx-4">De</span>
+        <mat-form-field appearance="fill">
+            <mat-label>Ville</mat-label>
+            <input matInput formControlName="departureCity">
+        </mat-form-field>
+    </div>
+    <div>
+        <span class="text-xl mr-4">Arrivée le :</span>
+        <mat-form-field appearance="fill">
+            <mat-label>JJ/MM/AAAA</mat-label>
+            <input matInput formControlName="end" [min]="form.controls['start'].value || minDepartureDate"
+                [matDatepicker]="pickerArrival">
+            <mat-datepicker-toggle matIconSuffix [for]="pickerArrival"></mat-datepicker-toggle>
+            <mat-datepicker #pickerArrival></mat-datepicker>
+        </mat-form-field>
+        <span class="text-xl mx-4">À</span>
+        <mat-form-field appearance="fill">
+            <mat-label>Ville</mat-label>
+            <input matInput formControlName="arrivalCity">
+        </mat-form-field>
+    </div>
+</ng-container>
+
