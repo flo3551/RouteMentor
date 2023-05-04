@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DepartureArrivalFormComponent } from './components/dates/trip-departure-arrival.component';
+import { MapRoadtripComponent } from './components/map-roadtrip/map-roadtrip.component';
 import { SearchCityInputComponent } from './components/search-city-input/search-city-input.component';
 import { HomeFormComponent } from './pages/home-form/home-form.component';
 import { TripResultComponent } from './pages/trip-result/trip-result.component';
@@ -33,7 +34,8 @@ import { TripResultComponent } from './pages/trip-result/trip-result.component';
     DepartureArrivalFormComponent,
     TripResultComponent,
     HomeFormComponent,
-    SearchCityInputComponent
+    SearchCityInputComponent,
+    MapRoadtripComponent
   ],
   imports: [
     BrowserModule,

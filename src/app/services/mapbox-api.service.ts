@@ -31,4 +31,21 @@ export class MapboxApiService {
         return Promise.reject(error);
       })
   }
+
+  public getCityCoordinate(cityName: string): Promise<{ latitude: number, longitude: number }> {
+    let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(cityName)}.json?access_token=${ACCESS_TOKEN}`;
+    return lastValueFrom(this.httpClient.get(url))
+      .then((response: any) => {
+        if (response && response.features.length) {
+          let coordinates = response.features[0].geometry.coordinates
+
+          return Promise.resolve({ latitude: coordinates[1], longitude: coordinates[0] });
+        }
+
+        return Promise.reject("not found");
+      })
+      .catch(error => {
+        return Promise.reject(error);
+      })
+  }
 }

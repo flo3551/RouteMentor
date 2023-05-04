@@ -1,58 +1,62 @@
-<mat-drawer-container class="h-screen w-1/2">
-    <mat-drawer mode="side" opened class="w-1/3">
-        <div class="drawer-header text-center h-1/6 pt-4 border-b">
-            <h1 class="font-bold">RouteMentor</h1>
-        </div>
-        <div class="drawer-menu h-5/6 flex flex-col">
-            <div *ngFor="let step of trip.steps; let i = index"
-                class="flex items-center justify-center grow border-b content-center cursor-pointer hover:bg-primary"
-                (click)="onClickMenuStepButton(i)" [ngClass]="this.selectedStep.id === i + 1 ? 'selected-step' : ''">
-                <span class="font-bold text-lg">Étape {{i + 1}}</span>
+<div class="flex">
+    <mat-drawer-container class="h-screen w-1/2 w-1/2">
+        <mat-drawer mode="side" opened class="w-1/3">
+            <div class="drawer-header text-center h-1/6 pt-4 border-b">
+                <h1 class="font-bold">RouteMentor</h1>
             </div>
-        </div>
-    </mat-drawer>
-    <mat-drawer-content class="w-2/3 pt-4">
-        <!-- CURRENT STEP -->
-        <div class="h-full flex flex-col items-center">
-            <div class="flex flex-col justify-center mb-4 text-center">
-                <p class="font-bold text-2xl text-indigo-700">{{ selectedStep.to }}
-                </p>
-                <p>
-                    {{selectedStep.date}} -
-                    {{computeLeavingDate(selectedStep.date,selectedStep.travelDuration)}}
-                </p>
+            <div class="drawer-menu h-5/6 flex flex-col">
+                <div *ngFor="let step of trip.steps; let i = index"
+                    class="flex items-center justify-center grow border-b content-center cursor-pointer hover:bg-primary"
+                    (click)="onClickMenuStepButton(i)"
+                    [ngClass]="this.selectedStep.id === i + 1 ? 'selected-step' : ''">
+                    <span class="font-bold text-lg">Étape {{i + 1}}</span>
+                </div>
             </div>
+        </mat-drawer>
+        <mat-drawer-content class="w-2/3 pt-4">
+            <!-- CURRENT STEP -->
+            <div class="h-full flex flex-col items-center">
+                <div class="flex flex-col justify-center mb-4 text-center">
+                    <p class="font-bold text-2xl text-indigo-700">{{ selectedStep.to }}
+                    </p>
+                    <p>
+                        {{selectedStep.date}} -
+                        {{computeLeavingDate(selectedStep.date,selectedStep.travelDuration)}}
+                    </p>
+                </div>
 
-            <div class="mb-4">
-                <p>Durée : {{selectedStep.travelDuration}} jours</p>
-                <p>Hébergement : {{selectedStep.hostingName}} (à partir de {{selectedStep.hostingCost}} €
-                    <mat-icon class="material-icons-outlined mt-auto text-base" #tooltip="matTooltip"
-                        matTooltip="Ce prix est une estimation du coût total. Cela peut ne pas refléter la réalité."
-                        matTooltipPosition="above">info</mat-icon>)
-                </p>
-            </div>
-            <div class="justify-center text-xl text-indigo-600">
-                Liste des activités
-            </div>
-
-            <mat-card class="activity-card w-full mx-4 mt-4" *ngFor="let activity of selectedStep.activities">
-                <mat-card-header class="mb-2">
-                    <mat-card-title class="text-lg">
-                        {{ activity.name }} ({{activity.location}})
-                    </mat-card-title>
-                    <mat-card-subtitle>{{activity.type}}</mat-card-subtitle>
-                </mat-card-header>
-
-                <mat-card-content>
-                    <p>{{activity.description}}</p>
-                    <span class="font-light italic flex justify-end">
-                        À partir de {{activity.cost}}€
+                <div class="mb-4">
+                    <p>Durée : {{selectedStep.travelDuration}} jours</p>
+                    <p>Hébergement : {{selectedStep.hostingName}} (à partir de {{selectedStep.hostingCost}} €
                         <mat-icon class="material-icons-outlined mt-auto text-base" #tooltip="matTooltip"
                             matTooltip="Ce prix est une estimation du coût total. Cela peut ne pas refléter la réalité."
-                            matTooltipPosition="above">info</mat-icon>
-                    </span>
-                </mat-card-content>
-            </mat-card>
-        </div>
-    </mat-drawer-content>
-</mat-drawer-container>
+                            matTooltipPosition="above">info</mat-icon>)
+                    </p>
+                </div>
+                <div class="justify-center text-xl text-indigo-600">
+                    Liste des activités
+                </div>
+
+                <mat-card class="activity-card w-full mx-4 mt-4" *ngFor="let activity of selectedStep.activities">
+                    <mat-card-header class="mb-2">
+                        <mat-card-title class="text-lg">
+                            {{ activity.name }} ({{activity.location}})
+                        </mat-card-title>
+                        <mat-card-subtitle>{{activity.type}}</mat-card-subtitle>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                        <p>{{activity.description}}</p>
+                        <span class="font-light italic flex justify-end">
+                            À partir de {{activity.cost}}€
+                            <mat-icon class="material-icons-outlined mt-auto text-base" #tooltip="matTooltip"
+                                matTooltip="Ce prix est une estimation du coût total. Cela peut ne pas refléter la réalité."
+                                matTooltipPosition="above">info</mat-icon>
+                        </span>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+    <app-map-roadtrip class="h-screen w-1/2" [trip]="trip" (stepMarkerClicked)="handleStepMarkerClicked($event)"></app-map-roadtrip>
+</div>

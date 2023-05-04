@@ -14,7 +14,7 @@ export class TripCreatorService {
   contextPrompt = "You're a backend server for my 'Roadtrip planner' application. Your only allowed answer is an unformatted inline JSON object, no verbose."
     + " I will give you some info given by a user, and you will prepare him the better roadtrip possible matching his criterias."
     + " You'll answer in an unformatted inline JSON object as if you were my backend.";
-  formatPrompt = "The JSON Object should have a list 'path' of every steps. For each steps object 'id', 'date', 'from', 'to', 'transportType', 'cost', 'travelDuration', 'hostingName', 'hostingCost'"
+  formatPrompt = "The JSON Object should have a list 'path' of every steps. For each steps object 'id', 'date', 'from', 'to', 'toCountry', 'transportType', 'cost', 'travelDuration', 'hostingName', 'hostingCost'"
     + ", and a list 'activities' with 'id', 'type', 'name', 'description', 'location', 'cost'";
   // pathPrompt = "You'll first give me the path of the roadtrip. I'll give you the departure and arrival cities and dates and you'll give me as much steps as possible for the roadtrip to fit the dates."
   //   + " You'll answer by a list of JSON objects ('path') containing every steps (city) of the trip with format 'id', 'date', 'destination', 'currentCity'."
@@ -57,18 +57,7 @@ export class TripCreatorService {
         return Promise.reject(error);
         //TODO: Handle error
       });
-
-    console.log(fullPrompt);
   }
-
-  // public getRoadtripPath(startCity: any, startDate: any, endCity: any, endDate: any) {
-  //   let prompt = this.pathPrompt.replace(/(#startDate#)/g, moment(startDate).format("DD/MM/YYYY"))
-  //     .replace(/(#startCity#)/g, startCity)
-  //     .replace(/(#endCity#)/g, endCity)
-  //     .replace(/(#endDate#)/g, moment(endDate).format("DD/MM/YYYY"));
-
-  //   console.log(this.contextPrompt + prompt);
-  // }
 
   private _prepareHostingsText(hostingsForm: FormGroup): string {
     let selectedHostings: Array<string> = [];

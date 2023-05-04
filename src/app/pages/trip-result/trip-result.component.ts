@@ -43,4 +43,8 @@ export class TripResultComponent {
     this.selectedStep = this.previousStep!;
     this.previousStep = (this.selectedStep.id === 1) ? null : this.trip.steps[this.selectedStep.id - 2];
   }
+
+  handleStepMarkerClicked(event: any) {
+    this.selectedStep = event;
+  }
 }
