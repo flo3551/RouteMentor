@@ -9,10 +9,10 @@
             <mat-datepicker #pickerDeparture></mat-datepicker>
         </mat-form-field>
         <span class="text-xl mx-4">De</span>
-        <mat-form-field appearance="fill">
-            <mat-label>Ville</mat-label>
-            <input matInput formControlName="departureCity">
-        </mat-form-field>
+        <app-search-city-input [control]="form.controls['departureCity']"></app-search-city-input>
+        <!-- <mat-error *ngIf="form.controls['departureCity'].invalid" class="text-red">
+            Veuillez sélectionner une ville.
+        </mat-error> -->
     </div>
     <div>
         <span class="text-xl mr-4">Arrivée le :</span>
@@ -24,10 +24,6 @@
             <mat-datepicker #pickerArrival></mat-datepicker>
         </mat-form-field>
         <span class="text-xl mx-4">À</span>
-        <mat-form-field appearance="fill">
-            <mat-label>Ville</mat-label>
-            <input matInput formControlName="arrivalCity">
-        </mat-form-field>
+        <app-search-city-input [control]="form.controls['arrivalCity']"></app-search-city-input>
     </div>
 </ng-container>
-

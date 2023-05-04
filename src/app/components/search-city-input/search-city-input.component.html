@@ -1,0 +1,10 @@
+ <mat-form-field appearance="fill">
+    <mat-label>Ville</mat-label>
+    <input matInput aria-label="State" [matAutocomplete]="auto" (input)="searchModelChanged.next($event)">
+    <mat-autocomplete #matAutoComplete autoActiveFirstOption="true" #auto="matAutocomplete"
+        (optionSelected)="onOptionSelected($event)">
+        <mat-option *ngFor="let result of results | async" [value]="result.cityName">
+            <span>{{result.cityName}}</span>
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>

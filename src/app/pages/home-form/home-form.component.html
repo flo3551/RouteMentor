@@ -105,8 +105,7 @@
 
     <div class="flex mt-7">
         <div class="w-full text-center">
-            <button aria-label="Préparer le roadtrip" mat-raised-button color="primary" (click)="onClickSubmitButton()">
-                <!-- [disabled]="tripDetailsForm.invalid" -->
+            <button aria-label="Préparer le roadtrip" mat-raised-button color="primary" (click)="onClickSubmitButton()" [disabled]="tripDetailsForm.invalid">
                 <span class="p-3">
                     <mat-icon>mode_of_travel</mat-icon>
                     Préparer le roadtrip

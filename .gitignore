@@ -44,3 +44,6 @@ Thumbs.db
 
 # Old files
 *.old
+
+# Secrets File
+src/app/secret/mapbox-access-token.ts

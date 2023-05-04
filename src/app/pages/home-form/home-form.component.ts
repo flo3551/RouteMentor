@@ -18,8 +18,8 @@ export class HomeFormComponent {
     departureArrivalForm: new FormGroup({
       start: new FormControl<Date | null>(new Date("2023/06/30"), [Validators.required]),
       end: new FormControl<Date | null>(new Date("2023/07/16"), [Validators.required]),
-      departureCity: new FormControl('Bordeaux', [Validators.required]),
-      arrivalCity: new FormControl('Malaga', [Validators.required]),
+      departureCity: new FormControl('', [Validators.required]),
+      arrivalCity: new FormControl('', [Validators.required]),
     }),
     budget: new FormControl<number>(1200, [Validators.required, Validators.min(1)]),
     nbAdults: new FormControl<number>(2, [Validators.required, Validators.min(1)]),
@@ -51,9 +51,11 @@ export class HomeFormComponent {
   onClickSubmitButton() {
     if (this.tripDetailsForm.valid) {
       let tripInfosForm = this.tripDetailsForm.get("departureArrivalForm");
-      let startCity = tripInfosForm?.get("departureCity")?.value;
+      let startCity = tripInfosForm?.get("departureCity")?.value!.split(",")[0];
+      let startCountry = tripInfosForm?.get("departureCity")?.value!.split(",")[2];
       let startDate = tripInfosForm?.get("start")?.value;
-      let endCity = tripInfosForm?.get("arrivalCity")?.value;
+      let endCity = tripInfosForm?.get("arrivalCity")?.value!.split(",")[0];
+      let endCountry = tripInfosForm?.get("arrivalCity")?.value!.split(",")[2];
       let endDate = tripInfosForm?.get("end")?.value;
       let hostings = this.tripDetailsForm.get("hostings") as FormGroup;
       let interests = this.tripDetailsForm.get("interests") as FormGroup;
@@ -62,9 +64,10 @@ export class HomeFormComponent {
       let budget = this.tripDetailsForm.get("budget")?.value;
       let transportType = this.tripDetailsForm.get("transports")?.value;
 
+      // TODO: Update prompt, add startCountry / endCountry
       this.tripCreatorService.preparePrompt(startCity, startDate, endCity, endDate, hostings, interests, nbAdults!, nbChilds!, budget!, transportType!)
         .then((steps: TripStep[]) => {
-          let trip = new Trip(startCity!, startDate?.toString()!, endCity!, endDate?.toString()!, budget!, nbAdults!, nbChilds!, steps);
+          let trip = new Trip(startCity!, startCountry!, startDate?.toString()!, endCity!, endCountry!, endDate?.toString()!, budget!, nbAdults!, nbChilds!, steps);
           this.router.navigateByUrl('/result', { state: { trip: trip } });
         })
         .catch(error => {

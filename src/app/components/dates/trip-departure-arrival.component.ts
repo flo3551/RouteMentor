@@ -18,6 +18,7 @@ export class DepartureArrivalFormComponent implements OnInit {
   }
 
   onDepartureDateChange(event: any) {
+    // Reset End date if new departure date is superior
     if (event.value && this.form.controls["end"].value && event.value > this.form.controls["end"].value) {
       this.form.controls["end"].reset();
     }
