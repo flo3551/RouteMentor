@@ -1,49 +1,49 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-front/dist
-front/tmp
-front/out-tsc
-front/bazel-out
+/dist
+/tmp
+/out-tsc
+/bazel-out
 
 # Node
-front/node_modules
-front/npm-debug.log
-front/yarn-error.log
+/node_modules
+npm-debug.log
+yarn-error.log
 
 # IDEs and editors
-front/.idea/
-front/.project
-front/.classpath
-front/.c9/
-front/*.launch
-front/.settings/
-front/*.sublime-workspace
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
 # Visual Studio Code
-front/.vscode/*
-front/!.vscode/settings.json
-front/!.vscode/tasks.json
-front/!.vscode/launch.json
-front/!.vscode/extensions.json
-front/.history/*
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 
 # Miscellaneous
-front/.angular/cache
-front/.sass-cache/
-front/connect.lock
-front/coverage
-front/libpeerconnection.log
-front/testem.log
-front/typings
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
 
 # System files
-front/.DS_Store
-front/Thumbs.db
+.DS_Store
+Thumbs.db
 
 
 # Old files
-front/*.old
+*.old
 
 # Secrets File
-front/src/app/secret/mapbox-access-token.ts
+src/app/secret/mapbox-access-token.ts
