@@ -49,3 +49,5 @@ Thumbs.db
 # Secrets File
 src/app/secret/mapbox-access-token.ts
 server/node_modules/
+package-lock.json
+front/src/app/secret/
