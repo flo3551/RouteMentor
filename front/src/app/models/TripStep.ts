@@ -11,11 +11,11 @@ export class TripStep {
     travelDuration: number;
     hostingName: string;
     hostingCost: number;
-    activities: StepActivity[];
+    activities?: StepActivity[];
     latitude?: number;
     longitude?: number;
 
-    constructor(public _id: number, public _date: string, public _from: string, public _to: string, public _toCountry: string, public _transportType: string, public _cost: number, public _travelDuration: number, public _hostingName: string, public _hostingCost: number, public _activities: any[]) {
+    constructor(public _id: number, public _date: string, public _from: string, public _to: string, public _toCountry: string, public _transportType: string, public _cost: number, public _travelDuration: number, public _hostingName: string, public _hostingCost: number, public _activities?: any[]) {
         this.id = _id;
         this.date = _date;
         this.from = _from;
@@ -26,7 +26,7 @@ export class TripStep {
         this.travelDuration = _travelDuration;
         this.hostingName = _hostingName;
         this.hostingCost = _hostingCost;
-        this.activities = StepActivity._mapJsonListToStepActivityList(_activities);
+        // this.activities = StepActivity._mapJsonListToStepActivityList(_activities);
     }
 
     public static _mapJsonToTripStep(json: any): TripStep {
@@ -38,7 +38,7 @@ export class TripStep {
 
         for (let i = 0; i < json.length; i++) {
             const step = json[i];
-            steps.push(new TripStep(step.id, step.date, step.from, step.to, step.toCountry, step.transportType, step.code, step.travelDuration, step.hostingName, step.hostingCost, step.activities));
+            steps.push(new TripStep(step.id, step.date, step.from, step.to, step.toCountry, step.transportType, step.code, step.travelDuration, step.hostingName, step.hostingCost));
         }
 
         return steps;

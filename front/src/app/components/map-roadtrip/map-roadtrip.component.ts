@@ -24,7 +24,7 @@ export class MapRoadtripComponent implements AfterViewInit {
     (mapboxgl as any).accessToken = ACCESS_TOKEN;
   }
 
-  async ngAfterViewInit() {
+  ngAfterViewInit() {
     this.map = new mapboxgl.Map({
       container: this.mapElement.nativeElement, // container ID
       style: 'mapbox://styles/mapbox/streets-v12', // style URL
@@ -32,13 +32,15 @@ export class MapRoadtripComponent implements AfterViewInit {
       zoom: 9, // starting zoom
     });
 
-    await this.getLocationsCoordinates();
-    this.setMarkers();
-    this.addMarkersClickEventListener();
-    this.centerMap();
+    this.getLocationsCoordinates()
+      .then(() => {
+        this.setMarkers();
+        this.addMarkersClickEventListener();
+        this.centerMap();
+      })
   }
 
-  getLocationsCoordinates() {
+  async getLocationsCoordinates() {
     const cities: string[] = this.trip.steps.map((step: TripStep) => step.to + ", " + step.toCountry);
     cities.unshift(this.trip.startCity + ", " + this.trip.startCountry);
 
@@ -60,7 +62,7 @@ export class MapRoadtripComponent implements AfterViewInit {
       }
     }
 
-    return Promise.all(promiseStacks);
+    return await Promise.all(promiseStacks);
   }
 
   setMarkers() {

@@ -65,7 +65,7 @@ export class HomeFormComponent {
       let transportType = this.tripDetailsForm.get("transports")?.value;
 
       // TODO: Update prompt, add startCountry / endCountry
-      this.tripCreatorService.preparePrompt(startCity, startDate, endCity, endDate, hostings, interests, nbAdults!, nbChilds!, budget!, transportType!)
+      this.tripCreatorService.createTrip(startCity, startDate, endCity, endDate, hostings, interests, nbAdults!, nbChilds!, budget!, transportType!)
         .then((steps: TripStep[]) => {
           let trip = new Trip(startCity!, startCountry!, startDate?.toString()!, endCity!, endCountry!, endDate?.toString()!, budget!, nbAdults!, nbChilds!, steps);
           this.router.navigateByUrl('/result', { state: { trip: trip } });
