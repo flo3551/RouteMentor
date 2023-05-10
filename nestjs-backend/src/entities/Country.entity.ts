@@ -1,10 +1,13 @@
-import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { City } from './city.entity';
 
 @Entity()
 export class Country {
-  @PrimaryColumn({ length: 2 })
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  code: string;
 
   @Column()
   name: string;

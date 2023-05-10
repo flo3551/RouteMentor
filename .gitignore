@@ -8,6 +8,8 @@
 
 # Node
 /node_modules
+/nestjs-backend/node_modules
+/front/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -47,7 +49,8 @@ Thumbs.db
 *.old
 
 # Secrets File
-src/app/secret/mapbox-access-token.ts
-server/node_modules/
-package-lock.json
+nestjs-backend/secret/
 front/src/app/secret/
+
+# Others
+package-lock.json

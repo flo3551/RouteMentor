@@ -1,6 +1,7 @@
 -- Création de la table "Country"
 CREATE TABLE Country (
-    id CHAR(2) PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    code CHAR(2),
     name VARCHAR(255) NOT NULL
 );
 
