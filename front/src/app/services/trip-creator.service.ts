@@ -14,9 +14,8 @@ export class TripCreatorService {
 
   constructor(private httpClient: HttpClient) { }
 
-  createTrip(startCity: any, startDate: any, endCity: any, endDate: any, hostings: FormGroup, interests: FormGroup, nbAdults: number, nbChilds: number, budget: number, transportType: string) {
+  createTrip(startCity: any, startDate: any, endCity: any, endDate: any, hostings: FormGroup, nbAdults: number, nbChilds: number, budget: number, transportType: string) {
     let hostingsList = this.getHostings(hostings);
-    let interestsList = this.getInterests(interests);
 
     return lastValueFrom(this.httpClient.post(this.API_DEV_URL + "openai/getTripSteps", {
       "startCity": startCity,
@@ -24,7 +23,6 @@ export class TripCreatorService {
       "endCity": endCity,
       "endDate": endDate,
       "hostingsList": hostingsList,
-      "interestsList": interestsList,
       "nbAdults": nbAdults,
       "nbChilds": nbChilds,
       "budget": budget,
@@ -33,6 +31,22 @@ export class TripCreatorService {
       .then((response: any) => {
         if (response && response.path) {
           let steps = TripStep._mapJsonListToTripStepList(response.path);
+
+          return Promise.resolve(steps);
+        } else {
+          return Promise.reject("ERROR_FORMAT")
+        }
+      });
+  }
+
+  getActivities(tripSteps: TripStep[], interests: Interest[]): Promise<TripStep[]> {
+    return lastValueFrom(this.httpClient.post(this.API_DEV_URL + "openai/getStepsActivities", {
+      "steps": tripSteps,
+      "interests": interests
+    }))
+      .then((response: any) => {
+        if (response) {
+          let steps = TripStep._mapJsonListToTripStepList(response);
 
           return Promise.resolve(steps);
         } else {
@@ -62,52 +76,5 @@ export class TripCreatorService {
     }
 
     return selectedHostings;
-  }
-
-  private getInterests(interestsForm: FormGroup): string[] {
-    let selectedInterests: Array<string> = [];
-    // TODO: Handle "ownVehicle"
-
-    if (interestsForm.get("nature")?.value) {
-      selectedInterests.push(Interest.Nature);
-    }
-
-    if (interestsForm.get("culture")?.value) {
-      selectedInterests.push(Interest.Culture);
-    }
-
-    if (interestsForm.get("gastronomy")?.value) {
-      selectedInterests.push(Interest.Gastronomy);
-    }
-
-    if (interestsForm.get("nightLife")?.value) {
-      selectedInterests.push(Interest.NightLife);
-    }
-
-    if (interestsForm.get("outdoorActivities")?.value) {
-      selectedInterests.push(Interest.OutdoorActivities);
-    }
-
-    if (interestsForm.get("wellnessRelaxation")?.value) {
-      selectedInterests.push(Interest.WellnessRelaxation);
-    }
-
-    if (interestsForm.get("shopping")?.value) {
-      selectedInterests.push(Interest.Shopping);
-    }
-
-    if (interestsForm.get("specialEvents")?.value) {
-      selectedInterests.push(Interest.SpecialEvents);
-    }
-
-    if (interestsForm.get("childrenFamily")?.value) {
-      selectedInterests.push(Interest.ChildrenFamily);
-    }
-
-    if (interestsForm.get("architectureDesign")?.value) {
-      selectedInterests.push(Interest.ArchitectureDesign);
-    }
-
-    return selectedInterests;
   }
 }

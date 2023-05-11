@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Trip } from 'src/app/models/Trip';
 import { TripStep } from './../../models/TripStep';
 import * as moment from 'moment';
+import { TripCreatorService } from './../../services/trip-creator.service';
 
 @Component({
   selector: 'app-trip-result',
@@ -15,11 +16,18 @@ export class TripResultComponent {
   selectedStep: TripStep;
   nextStep: TripStep | null;
 
-  constructor(private router: Router) {
+  constructor(private tripCreatorService: TripCreatorService, private router: Router) {
     this.trip = this.router.getCurrentNavigation()?.extras?.state?.["trip"];
     this.previousStep = null;
     this.selectedStep = this.trip.steps[0];
     this.nextStep = this.trip.steps[1];
+
+    this.tripCreatorService.getActivities(this.trip.steps, this.trip.interests)
+      .then((results: TripStep[]) => {
+        this.trip.steps = results;
+        this.selectedStep = this.trip.steps[0];
+        this.nextStep = this.trip.steps[1];
+      })
   }
 
   onClickMenuStepButton(index: any) {

@@ -38,7 +38,11 @@ export class TripStep {
 
         for (let i = 0; i < json.length; i++) {
             const step = json[i];
-            steps.push(new TripStep(step.id, step.date, step.from, step.to, step.toCountry, step.transportType, step.code, step.travelDuration, step.hostingName, step.hostingCost));
+            const newStep = new TripStep(step.id, step.date, step.from, step.to, step.toCountry, step.transportType, step.code, step.travelDuration, step.hostingName, step.hostingCost);
+            if (step.activities && step.activities.length) {
+                newStep.activities = StepActivity._mapJsonListToStepActivityList(step.activities);
+            }
+            steps.push(step);
         }
 
         return steps;

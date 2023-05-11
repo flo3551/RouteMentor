@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Interest } from 'src/app/enums/interests';
 import { TransportType } from 'src/app/enums/transport-type';
 import { Trip } from 'src/app/models/Trip';
 import { TripStep } from './../../models/TripStep';
@@ -58,21 +59,69 @@ export class HomeFormComponent {
       let endCountry = tripInfosForm?.get("arrivalCity")?.value!.split(",")[2];
       let endDate = tripInfosForm?.get("end")?.value;
       let hostings = this.tripDetailsForm.get("hostings") as FormGroup;
-      let interests = this.tripDetailsForm.get("interests") as FormGroup;
+      let interests = this.getInterests(this.tripDetailsForm.get("interests") as FormGroup);
       let nbAdults = this.tripDetailsForm.get("nbAdults")?.value;
       let nbChilds = this.tripDetailsForm.get("nbChild")?.value;
       let budget = this.tripDetailsForm.get("budget")?.value;
       let transportType = this.tripDetailsForm.get("transports")?.value;
 
       // TODO: Update prompt, add startCountry / endCountry
-      this.tripCreatorService.createTrip(startCity, startDate, endCity, endDate, hostings, interests, nbAdults!, nbChilds!, budget!, transportType!)
+      this.tripCreatorService.createTrip(startCity, startDate, endCity, endDate, hostings, nbAdults!, nbChilds!, budget!, transportType!)
         .then((steps: TripStep[]) => {
-          let trip = new Trip(startCity!, startCountry!, startDate?.toString()!, endCity!, endCountry!, endDate?.toString()!, budget!, nbAdults!, nbChilds!, steps);
+          let trip = new Trip(startCity!, startCountry!, startDate?.toString()!, endCity!, endCountry!, endDate?.toString()!, budget!, nbAdults!, nbChilds!, interests, steps);
           this.router.navigateByUrl('/result', { state: { trip: trip } });
         })
         .catch(error => {
           console.log("error : ", error);
         })
     }
+  }
+
+
+  private getInterests(interestsForm: FormGroup): Interest[] {
+    let selectedInterests: Array<Interest> = [];
+    // TODO: Handle "ownVehicle"
+
+    if (interestsForm.get("nature")?.value) {
+      selectedInterests.push(Interest.Nature);
+    }
+
+    if (interestsForm.get("culture")?.value) {
+      selectedInterests.push(Interest.Culture);
+    }
+
+    if (interestsForm.get("gastronomy")?.value) {
+      selectedInterests.push(Interest.Gastronomy);
+    }
+
+    if (interestsForm.get("nightLife")?.value) {
+      selectedInterests.push(Interest.NightLife);
+    }
+
+    if (interestsForm.get("outdoorActivities")?.value) {
+      selectedInterests.push(Interest.OutdoorActivities);
+    }
+
+    if (interestsForm.get("wellnessRelaxation")?.value) {
+      selectedInterests.push(Interest.WellnessRelaxation);
+    }
+
+    if (interestsForm.get("shopping")?.value) {
+      selectedInterests.push(Interest.Shopping);
+    }
+
+    if (interestsForm.get("specialEvents")?.value) {
+      selectedInterests.push(Interest.SpecialEvents);
+    }
+
+    if (interestsForm.get("childrenFamily")?.value) {
+      selectedInterests.push(Interest.ChildrenFamily);
+    }
+
+    if (interestsForm.get("architectureDesign")?.value) {
+      selectedInterests.push(Interest.ArchitectureDesign);
+    }
+
+    return selectedInterests;
   }
 }
