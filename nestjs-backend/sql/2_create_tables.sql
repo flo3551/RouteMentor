@@ -2,7 +2,8 @@
 CREATE TABLE Country (
     id INT PRIMARY KEY AUTO_INCREMENT,
     code CHAR(2),
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    INDEX idx_country_code (code) -- Ajout de l'index sur la colonne "code"
 );
 
 -- Création de la table "City"
@@ -10,7 +11,7 @@ CREATE TABLE City (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     country CHAR(2) NOT NULL,
-    FOREIGN KEY (country) REFERENCES Country(id)
+    FOREIGN KEY (country) REFERENCES Country(code)
 );
 
 -- Création de la table "ActivityCategory"
