@@ -1,11 +1,11 @@
 import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { ActivityService } from 'src/activity/activity.service';
-import { OpenAiService } from 'src/openai/openai.service';
+import { StepsService } from './steps.service';
 
 @Controller('steps')
 export class StepsController {
-    constructor(private activityService: ActivityService, private openaiService: OpenAiService) {}
+    constructor(private activityService: ActivityService, private stepsService: StepsService) { }
 
     @Post('getStepsActivities')
     async getStepsActivities(@Body() data: any, @Res() response: Response) {
@@ -18,7 +18,7 @@ export class StepsController {
                 let stepsWithoutActivities = steps.filter(step => !cities.some(city => city.city_name === step.to));
                 if (stepsWithoutActivities.length) {
                     // Else, create new activities with OpenAI API.
-                    return this.openaiService.sendPromptGetStepsActivities(stepsWithoutActivities, data.interests)
+                    return this.stepsService.sendPromptGetStepsActivities(stepsWithoutActivities, data.interests)
                 }
 
                 return [];
