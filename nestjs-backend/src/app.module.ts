@@ -1,43 +1,47 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { DB_CONFIG } from 'secret/db.config';
+import { ActivityModule } from './activity/activity.module';
+import { ActivityService } from './activity/activity.service';
+import { ActivitycategoryController } from './activitycategory/activitycategory.controller';
+import { ActivitycategoryModule } from './activitycategory/activitycategory.module';
+import { ActivitycategoryService } from './activitycategory/activitycategory.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { Activity } from './entities/activity.entity';
-import { ActivityCategory } from './entities/activitycategory.entity';
-import { City } from './entities/city.entity';
-import { Country } from './entities/country.entity';
-import { StepActivity } from './entities/stepactivity.entity';
-import { Trip } from './entities/trip.entity';
-import { TripStep } from './entities/tripstep.entity';
+import { CityModule } from './city/city.module';
+import { CityService } from './city/city.service';
+import { CountryModule } from './country/country.module';
+import { CountryService } from './country/country.service';
+import { DatabaseModule } from './database/database.module';
 import { OpenaiController } from './openai/openai.controller';
 import { OpenaiModule } from './openai/openai.module';
 import { OpenAiService } from './openai/openai.service';
+import { TripModule } from './trip/trip.module';
+import { StepsModule } from './steps/steps.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
-    type: 'mysql',
-    host: 'localhost',
-    port: 3306,
-    username: DB_CONFIG.username,
-    password: DB_CONFIG.password,
-    database: DB_CONFIG.db_name,
-    entities: [
-      City,
-      Country,
-      Activity,
-      ActivityCategory,
-      TripStep,
-      Trip,
-      StepActivity
-    ],
-    synchronize: true,
-  }),
+  imports: [
+    DatabaseModule,
     HttpModule,
     OpenaiModule,
+    CityModule,
+    ActivityModule,
+    ActivitycategoryModule,
+    CountryModule,
+    TripModule,
+    StepsModule,
   ],
-  controllers: [AppController, OpenaiController],
-  providers: [AppService, OpenAiService],
+  controllers: [
+    AppController,
+    OpenaiController,
+    ActivitycategoryController
+  ],
+  providers: [
+    AppService,
+    OpenAiService,
+    ActivityService,
+    ActivitycategoryService,
+    CityService,
+    CountryService
+  ],
 })
 export class AppModule { }

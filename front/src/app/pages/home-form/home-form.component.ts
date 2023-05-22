@@ -83,43 +83,43 @@ export class HomeFormComponent {
     // TODO: Handle "ownVehicle"
 
     if (interestsForm.get("nature")?.value) {
-      selectedInterests.push(Interest.Nature);
+      selectedInterests.push(Interest.NAT);
     }
 
     if (interestsForm.get("culture")?.value) {
-      selectedInterests.push(Interest.Culture);
+      selectedInterests.push(Interest.CUL);
     }
 
     if (interestsForm.get("gastronomy")?.value) {
-      selectedInterests.push(Interest.Gastronomy);
+      selectedInterests.push(Interest.GAS);
     }
 
     if (interestsForm.get("nightLife")?.value) {
-      selectedInterests.push(Interest.NightLife);
+      selectedInterests.push(Interest.VNO);
     }
 
     if (interestsForm.get("outdoorActivities")?.value) {
-      selectedInterests.push(Interest.OutdoorActivities);
+      selectedInterests.push(Interest.SPT);
     }
 
     if (interestsForm.get("wellnessRelaxation")?.value) {
-      selectedInterests.push(Interest.WellnessRelaxation);
+      selectedInterests.push(Interest.DET);
     }
 
     if (interestsForm.get("shopping")?.value) {
-      selectedInterests.push(Interest.Shopping);
+      selectedInterests.push(Interest.SHO);
     }
 
     if (interestsForm.get("specialEvents")?.value) {
-      selectedInterests.push(Interest.SpecialEvents);
+      selectedInterests.push(Interest.EVS);
     }
 
     if (interestsForm.get("childrenFamily")?.value) {
-      selectedInterests.push(Interest.ChildrenFamily);
+      selectedInterests.push(Interest.FAM);
     }
 
     if (interestsForm.get("architectureDesign")?.value) {
-      selectedInterests.push(Interest.ArchitectureDesign);
+      selectedInterests.push(Interest.ARC);
     }
 
     return selectedInterests;

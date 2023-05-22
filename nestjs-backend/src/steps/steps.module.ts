@@ -1,4 +1,3 @@
-import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { ActivityModule } from 'src/activity/activity.module';
 import { ActivityService } from 'src/activity/activity.service';
@@ -8,18 +7,25 @@ import { CityService } from 'src/city/city.service';
 import { CountryModule } from 'src/country/country.module';
 import { CountryService } from 'src/country/country.service';
 import { DatabaseModule } from 'src/database/database.module';
-import { OpenaiController } from './openai.controller';
-import { OpenAiService } from './openai.service';
+import { OpenAiService } from 'src/openai/openai.service';
+import { StepsController } from './steps.controller';
+import { StepsService } from './steps.service';
 
 @Module({
   imports: [
-    DatabaseModule
+    DatabaseModule,
+    ActivityModule,
+    ActivitycategoryModule,
+    CityModule,
+    CountryModule
   ],
+  controllers: [StepsController],
   providers: [
+    StepsService,
+    CityService,
+    CountryService,
+    ActivityService,
     OpenAiService,
-  ],
-  controllers: [
-    OpenaiController
   ]
 })
-export class OpenaiModule { }
+export class StepsModule { }

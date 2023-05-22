@@ -1,18 +1,17 @@
-import { Entity, Column, PrimaryColumn, ManyToOne } from 'typeorm';
-import { TripStep } from './tripstep.entity';
+import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Activity } from './activity.entity';
+import { TripStep } from './tripstep.entity';
 
-@Entity()
+@Entity('StepActivity')
 export class StepActivity {
-    @PrimaryColumn()
-    step: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-    @PrimaryColumn()
-    activity: number;
+    @ManyToOne(() => TripStep)
+    @JoinColumn({ name: 'step' })
+    step: TripStep;
 
-    @ManyToOne(() => TripStep, (step) => step.activities, { onDelete: 'CASCADE' })
-    stepObject: TripStep;
-
-    @ManyToOne(() => Activity, (activity) => activity.id, { onDelete: 'CASCADE' })
-    activityObject: Activity;
+    @ManyToOne(() => Activity)
+    @JoinColumn({ name: 'activity' })
+    activity: Activity;
 }

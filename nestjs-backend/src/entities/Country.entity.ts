@@ -1,17 +1,11 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { City } from './city.entity';
+import { Column, Entity, Index, PrimaryColumn } from 'typeorm';
 
-@Entity()
+@Entity('Country')
 export class Country {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
+  @Index('idx_country_code')
+  @PrimaryColumn({ type: 'char', length: 3 })
   code: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255 })
   name: string;
-
-  @OneToMany(() => City, (city) => city.country)
-  cities: City[];
 }

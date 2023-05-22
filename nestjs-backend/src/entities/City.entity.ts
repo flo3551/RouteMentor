@@ -1,25 +1,15 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { Country } from './country.entity';
-import { Activity } from './activity.entity';
-import { TripStep } from './tripstep.entity';
 
-@Entity()
+@Entity('City')
 export class City {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
+  @PrimaryColumn({ type: 'varchar', length: 255 })
   name: string;
 
-  @ManyToOne(() => Country, (country) => country.cities)
+  @PrimaryColumn({ type: 'char', length: 3 })
+  countryCode: string;
+
+  @ManyToOne(() => Country)
+  @JoinColumn({ name: 'countryCode', referencedColumnName: 'code' })
   country: Country;
-
-  @OneToMany(() => Activity, (activity) => activity.city)
-  activities: Activity[];
-
-  @OneToMany(() => TripStep, (step) => step.fromCity)
-  startingSteps: TripStep[];
-
-  @OneToMany(() => TripStep, (step) => step.toCity)
-  endingSteps: TripStep[];
 }

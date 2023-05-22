@@ -1,38 +1,34 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { TripStep } from './tripstep.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('Trip')
 export class Trip {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255 })
   startCity: string;
 
-  @Column({ length: 2 })
+  @Column({ type: 'char', length: 2 })
   startCountry: string;
 
-  @Column()
+  @Column('date')
   startDate: Date;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255 })
   endCity: string;
 
-  @Column({ length: 2 })
+  @Column({ type: 'char', length: 2 })
   endCountry: string;
 
-  @Column()
+  @Column('date')
   endDate: Date;
 
   @Column('decimal', { precision: 10, scale: 2 })
   budget: number;
 
-  @Column()
+  @Column('int')
   nbAdults: number;
 
-  @Column()
+  @Column('int')
   nbChilds: number;
-
-  @OneToMany(() => TripStep, (step) => step.trip)
-  steps: TripStep[];
 }

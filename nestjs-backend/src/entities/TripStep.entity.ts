@@ -1,38 +1,55 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
-import { Trip } from './trip.entity';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { City } from './city.entity';
-import { StepActivity } from './stepactivity.entity';
+import { Trip } from './trip.entity';
 
-@Entity()
+@Entity('TripStep')
 export class TripStep {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column('date')
     date: Date;
 
-    @ManyToOne(() => Trip, (trip) => trip.steps)
+    @ManyToOne(() => Trip)
+    @JoinColumn({ name: 'trip' })
     trip: Trip;
 
-    @ManyToOne(() => City, (city) => city.startingSteps)
-    fromCity: City;
+    @Column('varchar', { length: 255 })
+    toCityName: string;
 
-    @ManyToOne(() => City, (city) => city.endingSteps)
+    @Column('varchar', { length: 2 })
+    toCityCountry: string;
+
+    @ManyToOne(() => City)
+    @JoinColumn([
+        { name: 'toCityName', referencedColumnName: 'name' },
+        { name: 'toCityCountry', referencedColumnName: 'countryCode' }
+    ])
     toCity: City;
 
-    @Column({ length: 2 })
-    toCountry: string;
+    @Column('varchar', { length: 255 })
+    fromCityName: string;
 
-    @Column({ nullable: true })
+    @Column('varchar', { length: 2 })
+    fromCityCountry: string;
+
+    @ManyToOne(() => City)
+    @JoinColumn([
+        { name: 'fromCityName', referencedColumnName: 'name' },
+        { name: 'fromCityCountry', referencedColumnName: 'countryCode' }
+    ])
+    fromCity: City;
+
+    @Column({ type: 'varchar', length: 255, nullable: true })
     transportType: string;
 
     @Column('decimal', { precision: 10, scale: 2, nullable: true })
     cost: number;
 
-    @Column({ nullable: true })
+    @Column('int', { nullable: true })
     travelDuration: number;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', length: 255, nullable: true })
     hostingName: string;
 
     @Column('decimal', { precision: 10, scale: 2, nullable: true })
@@ -43,7 +60,4 @@ export class TripStep {
 
     @Column('decimal', { precision: 10, scale: 6, nullable: true })
     longitude: number;
-
-    @OneToMany(() => StepActivity, (stepActivity) => stepActivity.step)
-    activities: StepActivity[];
 }

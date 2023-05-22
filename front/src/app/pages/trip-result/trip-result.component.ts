@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
+import { Interest } from 'src/app/enums/interests';
 import { Trip } from 'src/app/models/Trip';
 import { TripStep } from './../../models/TripStep';
-import * as moment from 'moment';
 import { TripCreatorService } from './../../services/trip-creator.service';
 
 @Component({
@@ -22,7 +23,10 @@ export class TripResultComponent {
     this.selectedStep = this.trip.steps[0];
     this.nextStep = this.trip.steps[1];
 
-    this.tripCreatorService.getActivities(this.trip.steps, this.trip.interests)
+    let interestKeys: string[] = Object.keys(Interest).filter(key => this.trip.interests.includes(Interest[key as keyof typeof Interest]));
+    let interests: { name: string, code: string }[] = interestKeys.map(key => ({ code: key, name: Interest[key as keyof typeof Interest] }));
+
+    this.tripCreatorService.getActivities(this.trip.steps, interests)
       .then((results: TripStep[]) => {
         this.trip.steps = results;
         this.selectedStep = this.trip.steps[0];

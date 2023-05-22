@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import { HostingType } from '../enums/hosting-type';
-import { Interest } from '../enums/interests';
 import { TripStep } from './../models/TripStep';
 
 @Injectable({
@@ -17,7 +16,7 @@ export class TripCreatorService {
   createTrip(startCity: any, startDate: any, endCity: any, endDate: any, hostings: FormGroup, nbAdults: number, nbChilds: number, budget: number, transportType: string) {
     let hostingsList = this.getHostings(hostings);
 
-    return lastValueFrom(this.httpClient.post(this.API_DEV_URL + "openai/getTripSteps", {
+    return lastValueFrom(this.httpClient.post(this.API_DEV_URL + "trip/getTripSteps", {
       "startCity": startCity,
       "startDate": startDate,
       "endCity": endCity,
@@ -39,8 +38,8 @@ export class TripCreatorService {
       });
   }
 
-  getActivities(tripSteps: TripStep[], interests: Interest[]): Promise<TripStep[]> {
-    return lastValueFrom(this.httpClient.post(this.API_DEV_URL + "openai/getStepsActivities", {
+  getActivities(tripSteps: TripStep[], interests: { name: string, code: string }[]): Promise<TripStep[]> {
+    return lastValueFrom(this.httpClient.post(this.API_DEV_URL + "steps/getStepsActivities", {
       "steps": tripSteps,
       "interests": interests
     }))

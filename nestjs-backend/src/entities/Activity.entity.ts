@@ -1,27 +1,32 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { City } from './city.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
 import { ActivityCategory } from './activitycategory.entity';
+import { City } from './city.entity';
 
-@Entity()
+@Entity('Activity')
 export class Activity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255 })
   type: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255 })
   name: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column('text', { nullable: true })
   description: string;
 
-  @ManyToOne(() => City, (city) => city.activities)
-  city: City;
-
-  @Column()
+  @Column({ type: 'varchar', length: 255, nullable: true })
   cost: string;
 
-  @ManyToOne(() => ActivityCategory, (category) => category.activities)
+  @ManyToOne(() => City)
+  @JoinColumn([
+    { name: 'cityName', referencedColumnName: 'name' },
+    { name: 'cityCountryCode', referencedColumnName: 'countryCode' }
+  ])
+  city: City;
+
+  @ManyToOne(() => ActivityCategory)
+  @JoinColumn({ name: 'category' })
   category: ActivityCategory;
 }

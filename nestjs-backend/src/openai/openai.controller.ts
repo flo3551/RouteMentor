@@ -1,25 +1,5 @@
-import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
-import { Response } from 'express';
-import { OpenAiService } from './openai.service';
+import { Controller } from "@nestjs/common";
 
 @Controller('openai')
-export class OpenaiController {
-    constructor(private readonly openAiService: OpenAiService) { }
+export class OpenaiController { }
 
-    @Post('getTripSteps')
-    getTripSteps(@Body() data: any, @Res() response: Response) {
-        return this.openAiService.sendPromptGetTrip(data.startCity, data.startDate, data.endCity, data.endDate, data.hostingsList, data.nbAdults, data.nbChilds, data.budget, data.transportType)
-            .then(result => {
-                const sanitizedResult = JSON.parse(result.data.choices[0].text);
-                response.status(HttpStatus.CREATED).json(sanitizedResult);
-            })
-    }
-
-    @Post('getStepsActivities')
-    getStepsActivities(@Body() data: any, @Res() response: Response) {
-        return this.openAiService.sendPromptGetActivities(data.steps, data.interests)
-            .then(result => {
-                response.status(HttpStatus.CREATED).json(result);
-            })
-    }
-}
