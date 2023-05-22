@@ -11,17 +11,17 @@ export class OpenAiService {
         apiKey: OPENAI_ACCESS_TOKEN,
     });
     private openai = new OpenAIApi(this.configuration);
-    contextPrompt = "You're a backend server for my 'Roadtrip planner' application. Your only allowed answer is an unformatted inline JSON object, no space, no linebreak, no verbose, no explanations."
-        + " I will give you some info given by a user, and you will prepare him the better roadtrip possible matching his criterias.";
-    tripFormatPrompt = "The journey must be logical. The traveler should have enough time at each stop to do activities in the city."
-        + " The JSON Object should have a list 'path' of every steps. For each steps object 'id', 'date', 'from', 'to', 'toCountry', 'transportType', 'cost', 'travelDuration', 'hostingName', 'hostingCost'"
-    tripVariablePrompt = "  Infos: Départ le #dateDeparture# de #cityDeparture#, arrivée le #dateArrival# à #cityArrival#."
-        + " Il y aura #nbAdults# adultes, #nbChilds# enfant(s) et un budget total de #budget#€. Les déplacements se feront en #transportType#."
-        + " Les nuits devront être #hostings#."
-    activitiesFormatPrompt = "I'll give you a city and his id, and interests of the traveler. You'll answer as a backend with a list of activities near each city matchings travelers interests."
-        + " The JSON Object should have a list of key representing cities ids each of them are an array of 'activities' with 'type', 'name', 'description', 'cost',"
-        + " 'city' which is an object containing 'name' attribute and another JSON object named 'country' with 'name' and 'code' (the country code) attributes, 'category' which is an object containing 'name' of the interest and 'code' of the interest I gave you (ex: 'name': 'Nature et paysages', 'code': 'NAT').";
-    activitiesVariablePrompt = "The cities are : #cities#  and interests are #interests#.";
+    private contextPrompt = "You are TravelGPT, a backend server for a roadtrip planner application. You create specific and logical journey to meet user needs. "
+        + "As a backend server, you'll respond with an inline and no linebreak JSON object. No verbose, no explanation. JSON Object must match given format : "
+    private tripFormatPrompt = "{\"path\": [{date: string, from: string, to: string, toCountry: string, transportType: string, cost: integer, travelDuration: integer, hostingName: string, hostingCost: integer}]} "
+        + "where travelDuration is the time in hours between \"from\" and \"to\" cities in the transportType given. "
+    private tripVariablePrompt = "As a Travel guide backend, you'll provide interesting cities to visit, and as mush steps as possible to match user dates criteria and still having time to enjoy each city. "
+        + "Users inputs: Départ le #dateDeparture# de #cityDeparture#, arrivée le #dateArrival# à #cityArrival#. #nbAdults# adultes, #nbChilds# enfant(s). "
+        + "Budget total de #budget#€. Déplacements #transportType#. Hébergement #hostings#. "
+    private activitiesFormatPrompt = "{\"cityId\":[{\"type\": string,\"name\": string,\"description\": string,\"cost\": integer,\"city\": {\"name\": string,\"country\": {\"name\": string,\"code\": string}},\"category\": {\"name\": string,\"code\": string}}}]. "
+        + "As a Travel guide backend, you'll provide 3 interesting activities for every interests criterias given by user in each city. "
+        + "You must respond with real data and not sample activities. "
+    private activitiesVariablePrompt = "User Cities : #cities#. User interests : #interests#.";
 
     public async sendPromptGetTrip(startCity: any, startDate: any, endCity: any, endDate: any, hostings: string[], nbAdults: number, nbChilds: number, budget: number, transportType: string): Promise<any> {
         let hostingsText = this._formatHostingsText(hostings);
