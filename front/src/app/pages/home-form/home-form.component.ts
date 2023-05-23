@@ -7,6 +7,8 @@ import { Trip } from 'src/app/models/Trip';
 import { TripStep } from './../../models/TripStep';
 import { TripCreatorService } from './../../services/trip-creator.service';
 import { atLeastOneCheckboxCheckedValidator } from './../../Validators/least-one-checkbox.validator';
+import { MatDialog } from '@angular/material/dialog';
+import { LoadingDialogComponent } from 'src/app/components/loading-dialog/loading-dialog.component';
 
 @Component({
   selector: 'app-home-form',
@@ -47,7 +49,7 @@ export class HomeFormComponent {
     }, { validators: atLeastOneCheckboxCheckedValidator() })
   });
 
-  constructor(private tripCreatorService: TripCreatorService, private router: Router) { }
+  constructor(private tripCreatorService: TripCreatorService, private router: Router, private dialog: MatDialog) { }
 
   onClickSubmitButton() {
     if (this.tripDetailsForm.valid) {
@@ -65,18 +67,26 @@ export class HomeFormComponent {
       let budget = this.tripDetailsForm.get("budget")?.value;
       let transportType = this.tripDetailsForm.get("transports")?.value;
 
-      // TODO: Update prompt, add startCountry / endCountry
+      let dialog = this.openLoadingDialog();
+
       this.tripCreatorService.createTrip(startCity, startDate, endCity, endDate, hostings, nbAdults!, nbChilds!, budget!, transportType!)
         .then((steps: TripStep[]) => {
+          dialog.close();
           let trip = new Trip(startCity!, startCountry!, startDate?.toString()!, endCity!, endCountry!, endDate?.toString()!, budget!, nbAdults!, nbChilds!, interests, steps);
           this.router.navigateByUrl('/result', { state: { trip: trip } });
         })
         .catch(error => {
+          dialog.close();
           console.log("error : ", error);
         })
     }
   }
 
+  openLoadingDialog() {
+    return this.dialog.open(LoadingDialogComponent, {
+      disableClose: true
+    });
+  }
 
   private getInterests(interestsForm: FormGroup): Interest[] {
     let selectedInterests: Array<Interest> = [];

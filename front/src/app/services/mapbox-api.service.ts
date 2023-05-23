@@ -42,7 +42,7 @@ export class MapboxApiService {
           return Promise.resolve({ latitude: coordinates[1], longitude: coordinates[0] });
         }
 
-        return Promise.reject("not found");
+        return Promise.reject("not found :" + cityName );
       })
       .catch(error => {
         return Promise.reject(error);

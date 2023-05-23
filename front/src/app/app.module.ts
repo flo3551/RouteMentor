@@ -9,11 +9,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -22,11 +24,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DepartureArrivalFormComponent } from './components/dates/trip-departure-arrival.component';
+import { LoadingDialogComponent } from './components/loading-dialog/loading-dialog.component';
 import { MapRoadtripComponent } from './components/map-roadtrip/map-roadtrip.component';
 import { SearchCityInputComponent } from './components/search-city-input/search-city-input.component';
 import { HomeFormComponent } from './pages/home-form/home-form.component';
 import { TripResultComponent } from './pages/trip-result/trip-result.component';
-
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { TripResultComponent } from './pages/trip-result/trip-result.component';
     TripResultComponent,
     HomeFormComponent,
     SearchCityInputComponent,
-    MapRoadtripComponent
+    MapRoadtripComponent,
+    LoadingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,9 @@ import { TripResultComponent } from './pages/trip-result/trip-result.component';
     MatChipsModule,
     MatTooltipModule,
     MatSidenavModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },

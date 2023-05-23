@@ -16,6 +16,7 @@ export class TripResultComponent {
   previousStep: TripStep | null;
   selectedStep: TripStep;
   nextStep: TripStep | null;
+  activitiesLoading: boolean = false;
 
   constructor(private tripCreatorService: TripCreatorService, private router: Router) {
     this.trip = this.router.getCurrentNavigation()?.extras?.state?.["trip"];
@@ -26,11 +27,16 @@ export class TripResultComponent {
     let interestKeys: string[] = Object.keys(Interest).filter(key => this.trip.interests.includes(Interest[key as keyof typeof Interest]));
     let interests: { name: string, code: string }[] = interestKeys.map(key => ({ code: key, name: Interest[key as keyof typeof Interest] }));
 
+    this.activitiesLoading = true;
     this.tripCreatorService.getActivities(this.trip.steps, interests)
       .then((results: TripStep[]) => {
         this.trip.steps = results;
         this.selectedStep = this.trip.steps[0];
         this.nextStep = this.trip.steps[1];
+        this.activitiesLoading = false;
+      })
+      .catch(() => {
+        this.activitiesLoading = false;
       })
   }
 
