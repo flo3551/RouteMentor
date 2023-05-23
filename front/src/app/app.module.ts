@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,6 +30,7 @@ import { MapRoadtripComponent } from './components/map-roadtrip/map-roadtrip.com
 import { SearchCityInputComponent } from './components/search-city-input/search-city-input.component';
 import { HomeFormComponent } from './pages/home-form/home-form.component';
 import { TripResultComponent } from './pages/trip-result/trip-result.component';
+import { StepActivityListComponent } from './components/step-activity-list/step-activity-list.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { TripResultComponent } from './pages/trip-result/trip-result.component';
     HomeFormComponent,
     SearchCityInputComponent,
     MapRoadtripComponent,
-    LoadingDialogComponent
+    LoadingDialogComponent,
+    StepActivityListComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { TripResultComponent } from './pages/trip-result/trip-result.component';
     MatSidenavModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },

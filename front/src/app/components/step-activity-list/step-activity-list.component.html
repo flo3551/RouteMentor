@@ -1,0 +1,38 @@
+<mat-tab-group *ngIf="activityCategories.length " [selectedIndex]="selectedTabIndex"
+    (selectedIndexChange)="onTabIndexChanged($event)" animationDuration="0ms" class="mt-4 w-full">
+    <mat-tab *ngFor="let categ of activityCategories; let index = index">
+        <ng-template mat-tab-label>
+            <mat-icon>{{getCategoryIconName(categ.code)}}</mat-icon>
+        </ng-template>
+
+        <p class="font-bold text-lg p-4">{{categ.name}}</p>
+        <div *ngIf="!selectedStepActivitiesByCateg.length" class="mt-8 h-24">
+            <p>Aucune activité trouvée.</p>
+            <button mat-button color="primary" (click)="onClickSearchActivitiesButton()">Chercher
+                des activités</button>
+        </div>
+
+        <mat-card class="activity-card w-11/12 mt-4 flex mx-auto"
+            *ngFor="let activity of selectedStepActivitiesByCateg">
+            <mat-card-header class="mb-2 justify-center">
+                <mat-card-title class="text-lg text-center">
+                    {{ activity.name }}
+                    <span *ngIf="activity.location">
+                        ({{activity.location}})
+                    </span>
+                </mat-card-title>
+                <mat-card-subtitle>{{activity.type}}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+                <p>{{activity.description}}</p>
+                <span class="font-light italic flex justify-end">
+                    À partir de {{activity.cost}}€
+                    <mat-icon class="material-icons-outlined mt-auto text-base" #tooltip="matTooltip"
+                        matTooltip="Ce prix est une estimation du coût total. Cela peut ne pas refléter la réalité."
+                        matTooltipPosition="above">info</mat-icon>
+                </span>
+            </mat-card-content>
+        </mat-card>
+    </mat-tab>
+</mat-tab-group>

@@ -1,4 +1,5 @@
 import { Interest } from '../enums/interests';
+import { ActivityCategory } from './ActivityCategory';
 import { TripStep } from './TripStep';
 
 export class Trip {
@@ -11,10 +12,10 @@ export class Trip {
     budget: number;
     nbAdults: number;
     nbChilds: number;
-    interests: Interest[];
+    activitiesCategories: ActivityCategory[];
     steps: TripStep[];
 
-    constructor(_startCity: string, _startCountry: string, _startDate: string, _endCity: string, _endCountry: string, _endDate: string, _budget: number, _nbAdults: number, _nbChilds: number, _interests: Interest[], _steps: TripStep[]) {
+    constructor(_startCity: string, _startCountry: string, _startDate: string, _endCity: string, _endCountry: string, _endDate: string, _budget: number, _nbAdults: number, _nbChilds: number, _activitiesCategories: ActivityCategory[], _steps: TripStep[]) {
         this.startCity = _startCity;
         this.startCountry = _startCountry
         this.startDate = _startDate;
@@ -24,7 +25,7 @@ export class Trip {
         this.budget = _budget;
         this.nbAdults = _nbAdults;
         this.nbChilds = _nbChilds;
-        this.interests = _interests
+        this.activitiesCategories = _activitiesCategories;
         this.steps = _steps;
     }
 }

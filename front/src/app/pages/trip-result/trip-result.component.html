@@ -17,64 +17,55 @@
         <mat-drawer-content class="w-2/3 pt-4">
             <!-- CURRENT STEP -->
             <div class="h-full flex flex-col items-center">
-                <div class="flex flex-col justify-center mb-4 text-center">
-                    <p class="font-bold text-2xl text-indigo-700">{{ selectedStep.to }}
-                    </p>
-                    <p>
-                        {{selectedStep.date}} -
-                        {{computeLeavingDate(selectedStep.date,selectedStep.travelDuration)}}
-                    </p>
-                </div>
-
-                <div class="mb-4">
-                    <p>Durée : {{selectedStep.travelDuration}} jours</p>
-                    <p>Hébergement : {{selectedStep.hostingName}} (à partir de {{selectedStep.hostingCost}} €
-                        <mat-icon class="material-icons-outlined mt-auto text-base" #tooltip="matTooltip"
-                            matTooltip="Ce prix est une estimation du coût total. Cela peut ne pas refléter la réalité."
-                            matTooltipPosition="above">info</mat-icon>)
-                    </p>
-                </div>
-                <div class="justify-center text-xl text-indigo-600">
-                    Liste des activités
-                </div>
-
-                <div class="mt-8 text-center" *ngIf="activitiesLoading">
-                    <div class="flex w-full justify-center mb-2">
-                        <mat-progress-spinner mode="indeterminate" diameter="40">
-                        </mat-progress-spinner>
+                <div class="step-header">
+                    <div class="flex flex-col justify-center mb-4 text-center">
+                        <p class="font-bold text-2xl text-indigo-700">{{ selectedStep.to }}
+                        </p>
+                        <p>
+                            {{selectedStep.date}} -
+                            {{computeLeavingDate(selectedStep.date,selectedStep.travelDuration)}}
+                        </p>
                     </div>
-                    <p class="text-sm font-light">
-                        Récupération des activités en cours...
-                    </p>
-                    <p class="text-xs font-light">
-                        (Veuillez patienter 1-2 minutes)
-                    </p>
-                </div>
 
-                <mat-card class="activity-card w-full mx-4 mt-4" *ngFor="let activity of selectedStep.activities">
-                    <mat-card-header class="mb-2">
-                        <mat-card-title class="text-lg">
-                            {{ activity.name }}
-                            <span *ngIf="activity.location">
-                                ({{activity.location}})
-                            </span>
-                        </mat-card-title>
-                        <mat-card-subtitle>{{activity.type}}</mat-card-subtitle>
-                    </mat-card-header>
-
-                    <mat-card-content>
-                        <p>{{activity.description}}</p>
-                        <span class="font-light italic flex justify-end">
-                            À partir de {{activity.cost}}€
+                    <div class="mb-4">
+                        <p>Durée : {{selectedStep.travelDuration}} jours</p>
+                        <p>Hébergement : {{selectedStep.hostingName}} (à partir de {{selectedStep.hostingCost}} €
                             <mat-icon class="material-icons-outlined mt-auto text-base" #tooltip="matTooltip"
                                 matTooltip="Ce prix est une estimation du coût total. Cela peut ne pas refléter la réalité."
-                                matTooltipPosition="above">info</mat-icon>
-                        </span>
-                    </mat-card-content>
-                </mat-card>
+                                matTooltipPosition="above">info</mat-icon>)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="w-full">
+                    <mat-divider></mat-divider>
+                </div>
+
+                <div class="step-activity flex flex-col items-center justify-center mb-4 text-center w-full">
+                    <div class="justify-center font-bold text-xl text-indigo-600 mt-4">
+                        Liste des activités
+                    </div>
+
+                    <div class="mt-8 text-center" *ngIf="activitiesLoading">
+                        <div class="flex w-full justify-center mb-2">
+                            <mat-progress-spinner mode="indeterminate" diameter="40">
+                            </mat-progress-spinner>
+                        </div>
+                        <p class="text-sm font-light">
+                            Récupération des activités en cours...
+                        </p>
+                        <p class="text-xs font-light">
+                            (Veuillez patienter 1-2 minutes)
+                        </p>
+                    </div>
+                    <app-step-activity-list *ngIf="!activitiesLoading" [selectedStep]="selectedStep"
+                        [activityCategories]="trip.activitiesCategories" (searchForActivity)="onSearchNewActivities()">
+                    </app-step-activity-list>
+                </div>
             </div>
         </mat-drawer-content>
     </mat-drawer-container>
+
     <app-map-roadtrip class="h-screen w-1/2" [trip]="trip" (stepMarkerClicked)="handleStepMarkerClicked($event)">
     </app-map-roadtrip>
 </div>

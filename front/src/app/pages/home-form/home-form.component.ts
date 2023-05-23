@@ -9,6 +9,7 @@ import { TripCreatorService } from './../../services/trip-creator.service';
 import { atLeastOneCheckboxCheckedValidator } from './../../Validators/least-one-checkbox.validator';
 import { MatDialog } from '@angular/material/dialog';
 import { LoadingDialogComponent } from 'src/app/components/loading-dialog/loading-dialog.component';
+import { ActivityCategory } from 'src/app/models/ActivityCategory';
 
 @Component({
   selector: 'app-home-form',
@@ -53,6 +54,8 @@ export class HomeFormComponent {
 
   onClickSubmitButton() {
     if (this.tripDetailsForm.valid) {
+      let dialog = this.openLoadingDialog();
+
       let tripInfosForm = this.tripDetailsForm.get("departureArrivalForm");
       let startCity = tripInfosForm?.get("departureCity")?.value!.split(",")[0];
       let startCountry = tripInfosForm?.get("departureCity")?.value!.split(",")[2];
@@ -67,12 +70,13 @@ export class HomeFormComponent {
       let budget = this.tripDetailsForm.get("budget")?.value;
       let transportType = this.tripDetailsForm.get("transports")?.value;
 
-      let dialog = this.openLoadingDialog();
+      let interestKeys: string[] = Object.keys(Interest).filter(key => interests.includes(Interest[key as keyof typeof Interest]));
+      let activitiesCategories: ActivityCategory[] = interestKeys.map(key => (new ActivityCategory(Interest[key as keyof typeof Interest], key)));
 
       this.tripCreatorService.createTrip(startCity, startDate, endCity, endDate, hostings, nbAdults!, nbChilds!, budget!, transportType!)
         .then((steps: TripStep[]) => {
           dialog.close();
-          let trip = new Trip(startCity!, startCountry!, startDate?.toString()!, endCity!, endCountry!, endDate?.toString()!, budget!, nbAdults!, nbChilds!, interests, steps);
+          let trip = new Trip(startCity!, startCountry!, startDate?.toString()!, endCity!, endCountry!, endDate?.toString()!, budget!, nbAdults!, nbChilds!, activitiesCategories, steps);
           this.router.navigateByUrl('/result', { state: { trip: trip } });
         })
         .catch(error => {
