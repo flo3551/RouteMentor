@@ -1,111 +1,86 @@
-<form [formGroup]="tripDetailsForm">
-    <app-trip-departure-arrival class="w-full text-center"></app-trip-departure-arrival>
+<div class="w-full text-center p-12">
+    <p class="text-4xl text-quinary font-bold">RouteMentor</p>
+    <h2 class="text-quinary bold">Des idées voyages en quelques clics !</h2>
+</div>
+<form [formGroup]="tripDetailsForm" class="space-y-8">
+    <div class="flex justify-center space-x-8">
+        <app-trip-departure-arrival class="text-center"></app-trip-departure-arrival>
+        <mat-divider [vertical]="true"></mat-divider>
+        <div class="text-center">
+            <app-input-quantity label="Adulte(s)" [min]="1" controlName="nbAdults" class="mx-8"></app-input-quantity>
+            <app-input-quantity label="Enfant(s)" [min]="0" controlName="nbChild" class="mx-8"></app-input-quantity>
+        </div>
+    </div>
 
-    <section class="flex justify-items-center">
-        <div class="w-full text-center">
-            <p class="text-2xl pb-4">Participants</p>
-            <p>
-                <span>Adulte(s) :</span>
-                <mat-form-field class="mx-4 w-16">
-                    <input matInput type="number" formControlName="nbAdults" />
-                </mat-form-field>
-            </p>
-            <p>
-                <span>Enfant(s) :</span>
-                <mat-form-field class="mx-4 w-16">
-                    <input matInput type="number" formControlName="nbChild" />
-                </mat-form-field>
-            </p>
-            <p>
-                <span>Budget total :</span>
-                <mat-form-field class="mx-4 w-28">
-                    <input matInput type="number" formControlName="budget">
-                </mat-form-field>
-            </p>
+    <div class="flex justify-center space-x-8">
+
+        <div class="text-center">
+            <p class="text-xl">Mode de transport</p>
+            <mat-form-field>
+                <span matPrefix class="mx-4">
+                    <mat-icon fontIcon="commute"></mat-icon>
+                </span>
+                <mat-select formControlName="transports">
+                    <mat-option [value]="transportType.Car">{{transportType.Car}}</mat-option>
+                    <mat-option [value]="transportType.Van">{{transportType.Van}}</mat-option>
+                    <mat-option [value]="transportType.CampingCar">{{transportType.CampingCar}}</mat-option>
+                    <mat-option [value]="transportType.Train">{{transportType.Train}}</mat-option>
+                    <mat-option [value]="transportType.Plane">{{transportType.Plane}}</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
 
         <mat-divider [vertical]="true"></mat-divider>
 
-        <div class="w-full text-center">
-            <p class="text-2xl">Vous souhaitez vous déplacer :</p>
-            <mat-radio-group aria-label="Mode de transport" class="flex flex-col items-start px-28 mt-4"
-                formControlName="transports">
-                <mat-radio-button [value]="transportType.Car">En voiture</mat-radio-button>
-                <mat-radio-button [value]="transportType.Van">En van</mat-radio-button>
-                <mat-radio-button [value]="transportType.CampingCar">En camping-car</mat-radio-button>
-                <mat-radio-button [value]="transportType.Train">En train</mat-radio-button>
-            </mat-radio-group>
+        <div class="text-center">
+            <p class="text-xl">Hébergement</p>
+            <mat-form-field>
+                <span matPrefix class="mx-4">
+                    <mat-icon fontIcon="gite"></mat-icon>
+                </span>
+                <mat-select [formControl]="tripDetailsForm.controls.hostings" multiple>
+                    <mat-option [value]="hostingType.Hotel">Hôtel</mat-option>
+                    <mat-option [value]="hostingType.YouthHotel">Auberge de jeunesse</mat-option>
+                    <mat-option [value]="hostingType.OwnVehicle">Je possède un véhicule adapté</mat-option>
+                    <mat-option [value]="hostingType.Camping">Camping</mat-option>
+                    <mat-option [value]="hostingType.Rental">Locations (AirBnB, Booking, ..)</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
-    </section>
+
+        <mat-divider [vertical]="true"></mat-divider>
+
+        <div class="text-center">
+            <p class="text-xl">Centres d'intérêts</p>
+
+            <mat-form-field>
+                <span matPrefix class="mx-4">
+                    <mat-icon fontIcon="gite"></mat-icon>
+                </span>
+                <mat-select [formControl]="tripDetailsForm.controls.interests" multiple placeholder="Qu'aimez-vous faire ?">
+                    <mat-option [value]="interests.NAT">{{interests.NAT.split('(')[0]}}</mat-option>
+                    <mat-option [value]="interests.CUL">{{interests.CUL.split('(')[0]}}</mat-option>
+                    <mat-option [value]="interests.GAS">{{interests.GAS.split('(')[0]}}</mat-option>
+                    <mat-option [value]="interests.VNO">{{interests.VNO.split('(')[0]}}</mat-option>
+                    <mat-option [value]="interests.SPT">{{interests.SPT.split('(')[0]}}</mat-option>
+                    <mat-option [value]="interests.DET">{{interests.DET.split('(')[0]}}</mat-option>
+                    <mat-option [value]="interests.SHO">{{interests.SHO.split('(')[0]}}</mat-option>
+                    <mat-option [value]="interests.EVS">{{interests.EVS.split('(')[0]}}</mat-option>
+                    <mat-option [value]="interests.FAM">{{interests.FAM.split('(')[0]}}</mat-option>
+                    <mat-option [value]="interests.ARC">{{interests.ARC.split('(')[0]}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
 
     <section class="flex justify-items-center mt-4">
-        <div class="w-full text-center" [formGroup]="tripDetailsForm.controls.hostings">
-            <p class="text-2xl">Hébergement</p>
-            <p>
-                <mat-checkbox formControlName="hotel">Hôtel</mat-checkbox>
-                <mat-checkbox formControlName="youthHotel">Auberge de jeunesse</mat-checkbox>
-                <mat-checkbox formControlName="ownVehicle">Je possède un véhicule adapté</mat-checkbox>
-            </p>
-            <p>
-                <mat-checkbox formControlName="camping">Camping</mat-checkbox>
-                <mat-checkbox formControlName="rental">Locations (AirBnB, Booking, ..)</mat-checkbox>
-            </p>
-            <div
-                *ngIf="tripDetailsForm.controls.hostings.touched && tripDetailsForm.controls.hostings.errors?.['atLeastOneCheckboxChecked']">
-                <span class="text-red-700">
-                    Veuillez choisir au moins un type d'hébergement.
-                </span>
-            </div>
-        </div>
-    </section>
 
-    <section class="flex justify-items-center mt-4">
-        <div class="w-full text-center" [formGroup]="tripDetailsForm.controls.interests">
-            <p class="text-2xl">Centre(s) d'intérêt(s)</p>
-            <p>
-                <mat-checkbox formControlName="nature">
-                    Nature et paysages
-                </mat-checkbox>
-                <mat-checkbox formControlName="culture">
-                    Culture
-                </mat-checkbox>
-                <mat-checkbox formControlName="gastronomy">
-                    Gastronomie
-                </mat-checkbox>
-                <mat-checkbox formControlName="nightLife">
-                    Vie nocturne
-                </mat-checkbox>
-                <mat-checkbox formControlName="outdoorActivities">
-                    Sports et activités de plein air
-                </mat-checkbox>
-                <mat-checkbox formControlName="wellnessRelaxation">
-                    Bien-être et détente
-                </mat-checkbox>
-                <mat-checkbox formControlName="shopping">
-                    Shopping
-                </mat-checkbox>
-                <mat-checkbox formControlName="specialEvents">
-                    Événements spéciaux
-                </mat-checkbox>
-                <mat-checkbox formControlName="childrenFamily">
-                    Famille et enfants
-                </mat-checkbox>
-                <mat-checkbox formControlName="architectureDesign">
-                    Architecture et design
-                </mat-checkbox>
-            </p>
-            <div
-                *ngIf="tripDetailsForm.controls.interests.touched && tripDetailsForm.controls.interests.errors?.['atLeastOneCheckboxChecked']">
-                <span class="text-red-700">
-                    Veuillez choisir au moins un centre d'intérêt.
-                </span>
-            </div>
-        </div>
     </section>
 
     <div class="flex mt-7">
         <div class="w-full text-center">
-            <button aria-label="Préparer le roadtrip" mat-raised-button color="primary" (click)="onClickSubmitButton()" [disabled]="tripDetailsForm.invalid">
+            <button aria-label="Préparer le roadtrip" mat-raised-button color="primary" (click)="onClickSubmitButton()"
+                [disabled]="tripDetailsForm.invalid">
                 <span class="p-3">
                     <mat-icon>mode_of_travel</mat-icon>
                     Préparer le roadtrip

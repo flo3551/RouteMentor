@@ -1,0 +1,10 @@
+<div class="space-x-4">
+    <span>{{label}} :</span>
+    <button mat-stroked-button color="primary" (click)="reduceValue()" [disabled]="formControl.value == min">
+        <mat-icon class="w-8">remove</mat-icon>
+    </button>
+    <span class="font-bold text-lg">{{ formControl.value }}</span>
+    <button mat-stroked-button color="primary" (click)="increaseValue()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>

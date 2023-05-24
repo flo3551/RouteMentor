@@ -1,5 +1,8 @@
- <mat-form-field appearance="fill">
-    <mat-label>Ville</mat-label>
+<mat-form-field appearance="fill">
+    <mat-label class="font-bold">{{isDeparture ? "Départ" : "Destination" }}</mat-label>
+    <span matPrefix class="mx-4">
+        <mat-icon [fontIcon]="isDeparture ? 'my_location' : 'pin_drop'"></mat-icon>
+    </span>
     <input matInput aria-label="State" [matAutocomplete]="auto" (input)="searchModelChanged.next($event)">
     <mat-autocomplete #matAutoComplete autoActiveFirstOption="true" #auto="matAutocomplete"
         (optionSelected)="onOptionSelected($event)">

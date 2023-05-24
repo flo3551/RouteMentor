@@ -12,6 +12,7 @@ import { MapboxApiService } from './../../services/mapbox-api.service';
 })
 export class SearchCityInputComponent {
   @Input() control!: any;
+  @Input('isDeparture') isDeparture: boolean = false;
   @ViewChild("matAutoComplete") matAutoComplete!: MatAutocomplete;
   form: FormGroup = new FormGroup({});
   private _searchSubscription!: Subscription;

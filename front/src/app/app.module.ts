@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -25,12 +26,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DepartureArrivalFormComponent } from './components/dates/trip-departure-arrival.component';
+import { InputQuantityComponent } from './components/input-quantity/input-quantity.component';
 import { LoadingDialogComponent } from './components/loading-dialog/loading-dialog.component';
 import { MapRoadtripComponent } from './components/map-roadtrip/map-roadtrip.component';
 import { SearchCityInputComponent } from './components/search-city-input/search-city-input.component';
+import { StepActivityListComponent } from './components/step-activity-list/step-activity-list.component';
 import { HomeFormComponent } from './pages/home-form/home-form.component';
 import { TripResultComponent } from './pages/trip-result/trip-result.component';
-import { StepActivityListComponent } from './components/step-activity-list/step-activity-list.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { StepActivityListComponent } from './components/step-activity-list/step-
     SearchCityInputComponent,
     MapRoadtripComponent,
     LoadingDialogComponent,
-    StepActivityListComponent
+    StepActivityListComponent,
+    InputQuantityComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ import { StepActivityListComponent } from './components/step-activity-list/step-
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },

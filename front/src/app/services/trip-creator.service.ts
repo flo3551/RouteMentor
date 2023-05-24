@@ -13,15 +13,14 @@ export class TripCreatorService {
 
   constructor(private httpClient: HttpClient) { }
 
-  createTrip(startCity: any, startDate: any, endCity: any, endDate: any, hostings: FormGroup, nbAdults: number, nbChilds: number, budget: number, transportType: string) {
-    let hostingsList = this.getHostings(hostings);
+  createTrip(startCity: any, startDate: any, endCity: any, endDate: any, hostings: string[], nbAdults: number, nbChilds: number, budget: number, transportType: string) {
 
     return lastValueFrom(this.httpClient.post(this.API_DEV_URL + "trip/getTripSteps", {
       "startCity": startCity,
       "startDate": startDate,
       "endCity": endCity,
       "endDate": endDate,
-      "hostingsList": hostingsList,
+      "hostingsList": hostings,
       "nbAdults": nbAdults,
       "nbChilds": nbChilds,
       "budget": budget,
