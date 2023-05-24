@@ -28,7 +28,7 @@ export class StepActivityListComponent {
   selectedStepActivitiesByCateg!: StepActivity[];
   selectedActivitiesCategory!: ActivityCategory;
   selectedTabIndex!: number;
-
+  showAllActivities = false;
 
   ngOnChanges() {
     this.updateTabs();
@@ -55,6 +55,7 @@ export class StepActivityListComponent {
       }
     }
 
+    this.showAllActivities = false;
     this.selectedTabIndex = index;
     this.selectedActivitiesCategory = this.activityCategories[this.selectedTabIndex];
     this.selectedStepActivitiesByCateg = this.selectedStep.activities!.filter(activity => activity.activityCategory.code === this.selectedActivitiesCategory.code);
@@ -63,5 +64,9 @@ export class StepActivityListComponent {
   onClickSearchActivitiesButton() {
     //TODO: Find why missing activities. If not a bug, request backend to create new activities.
     this.searchForActivity.emit();
+  }
+
+  onClickShowAllActivitiesButton() {
+    this.showAllActivities = true;
   }
 }
