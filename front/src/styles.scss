@@ -1,0 +1,44 @@
+@use '@angular/material' as mat;
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@include mat.core();
+
+$custom-primary: mat.define-palette(mat.$indigo-palette, 700);
+$custom-accent: mat.define-palette(mat.$orange-palette, 500);
+$custom-tertiary: mat.define-palette(mat.$yellow-palette, 500);
+$custom-quaternary: mat.define-palette(mat.$blue-palette, 500);
+$custom-quinary: mat.define-palette(mat.$blue-grey-palette, 700);
+$custom-senary: mat.define-palette(mat.$teal-palette, 900);
+
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $custom-primary,
+   accent: $custom-accent,
+   tertiary:$custom-tertiary,
+   quaternary:$custom-quaternary,
+   quinary:$custom-quinary,
+   sinary: $custom-senary
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+@include mat.all-component-themes($my-theme);
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: linear-gradient(to bottom, #87CEFA, #FFFFFF);
+    /* background: linear-gradient(to bottom, #FFB703, #98B427, #39A158, #008676, #006775, #2F4858);
+    background: linear-gradient(to bottom,#008676, #006775); */
+
+}
