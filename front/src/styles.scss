@@ -29,6 +29,15 @@ $my-theme: mat.define-light-theme((
 
 @include mat.all-component-themes($my-theme);
 
+@font-face {
+  font-family: 'Chewy';
+  src: url('/assets/fonts/Chewy-Regular.ttf');
+}
+
+.chewy-font {
+  font-family: 'Chewy', sans-serif;
+}
+
 html,
 body {
     height: 100%;

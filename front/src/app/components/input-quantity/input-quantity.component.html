@@ -1,5 +1,5 @@
-<div class="space-x-4">
-    <span>{{label}} :</span>
+<div class="h-fit space-x-2 md:space-x-4">
+    <span class="text-sm md:text-md">{{label}}</span>
     <button mat-stroked-button color="primary" (click)="reduceValue()" [disabled]="formControl.value == min">
         <mat-icon class="w-8">remove</mat-icon>
     </button>

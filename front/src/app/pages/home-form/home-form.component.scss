@@ -1,0 +1,20 @@
+div.main {
+    background-image: url("/assets/img/home_bg_1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.title-icon {
+    height: 3.2rem;
+    width: 3.2rem;
+}
+
+::ng-deep {
+    div.mat-mdc-text-field-wrapper {
+        border-radius: 8px !important;
+    }
+    .mat-mdc-raised-button.mat-mdc-button-base {
+        height: 48px !important;
+    }
+}

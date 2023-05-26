@@ -14,7 +14,7 @@ import { TripCreatorService } from './../../services/trip-creator.service';
 @Component({
   selector: 'app-home-form',
   templateUrl: './home-form.component.html',
-  styleUrls: ['./home-form.component.css']
+  styleUrls: ['./home-form.component.scss']
 })
 export class HomeFormComponent {
   transportType: typeof TransportType = TransportType;

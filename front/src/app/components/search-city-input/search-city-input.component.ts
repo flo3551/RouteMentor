@@ -8,7 +8,7 @@ import { MapboxApiService } from './../../services/mapbox-api.service';
 @Component({
   selector: 'app-search-city-input',
   templateUrl: './search-city-input.component.html',
-  styleUrls: ['./search-city-input.component.css']
+  styleUrls: ['./search-city-input.component.scss']
 })
 export class SearchCityInputComponent {
   @Input() control!: any;

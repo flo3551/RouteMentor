@@ -4,7 +4,7 @@ import { ControlContainer, FormGroup, FormGroupDirective } from '@angular/forms'
 @Component({
   selector: 'app-trip-departure-arrival',
   templateUrl: './trip-departure-arrival.component.html',
-  styleUrls: ['./trip-departure-arrival.component.css'],
+  styleUrls: ['./trip-departure-arrival.component.scss'],
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class DepartureArrivalFormComponent implements OnInit {
