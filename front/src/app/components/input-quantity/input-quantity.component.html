@@ -1,10 +1,10 @@
 <div class="h-fit space-x-2 md:space-x-4">
     <span class="text-sm md:text-md">{{label}}</span>
-    <button mat-stroked-button color="primary" (click)="reduceValue()" [disabled]="formControl.value == min">
-        <mat-icon class="w-8">remove</mat-icon>
+    <button mat-stroked-button (click)="reduceValue()" [disabled]="formControl.value == min">
+        <mat-icon class="w-8 text-quinary font-bold">remove</mat-icon>
     </button>
-    <span class="font-bold text-lg">{{ formControl.value }}</span>
-    <button mat-stroked-button color="primary" (click)="increaseValue()">
-        <mat-icon>add</mat-icon>
+    <span class="font-bold text-md">{{ formControl.value }}</span>
+    <button mat-stroked-button (click)="increaseValue()">
+        <mat-icon class="text-quinary font-bold">add</mat-icon>
     </button>
 </div>

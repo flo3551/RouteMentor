@@ -1,0 +1,10 @@
+::ng-deep {
+    .mdc-notched-outline__notch {
+        padding: 0 !important;
+        min-width: 70% !important;
+    }
+}
+
+.mobile-view mat-form-field {
+    width: 45%;
+}
