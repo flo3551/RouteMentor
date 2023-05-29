@@ -2,6 +2,7 @@ import { StepActivity } from './StepActivity';
 
 export class TripStep {
     id: number;
+    orderNumber: number;
     date: string;
     from: string;
     to: string;
@@ -15,8 +16,9 @@ export class TripStep {
     latitude?: number;
     longitude?: number;
 
-    constructor(public _id: number, public _date: string, public _from: string, public _to: string, public _toCountry: string, public _transportType: string, public _cost: number, public _travelDuration: number, public _hostingName: string, public _hostingCost: number, public _activities: StepActivity[]) {
+    constructor(public _id: number, _orderNumber: number, public _date: string, public _from: string, public _to: string, public _toCountry: string, public _transportType: string, public _cost: number, public _travelDuration: number, public _hostingName: string, public _hostingCost: number, public _activities: StepActivity[]) {
         this.id = _id;
+        this.orderNumber = _orderNumber;
         this.date = _date;
         this.from = _from;
         this.to = _to;
@@ -30,7 +32,7 @@ export class TripStep {
     }
 
     public static _mapJsonToTripStep(json: any): TripStep {
-        return new TripStep(json.id, json.date, json.from, json.to, json.toCountry, json.transportType, json.code, json.travelDuration, json.hostingName, json.hostingCost, json.activities);
+        return new TripStep(json.id, json.orderNumber, json.date, json.from, json.to, json.toCountry, json.transportType, json.code, json.travelDuration, json.hostingName, json.hostingCost, json.activities);
     }
 
     public static _mapJsonListToTripStepList(json: any[]): TripStep[] {
@@ -44,7 +46,7 @@ export class TripStep {
                 activities = StepActivity._mapJsonListToStepActivityList(step.activities);
             }
 
-            const newStep = new TripStep(step.id, step.date, step.from, step.to, step.toCountry, step.transportType, step.code, step.travelDuration, step.hostingName, step.hostingCost, activities);
+            const newStep = new TripStep(step.id, step.orderNumber, step.date, step.from, step.to, step.toCountry, step.transportType, step.code, step.travelDuration, step.hostingName, step.hostingCost, activities);
             steps.push(newStep);
         }
 
