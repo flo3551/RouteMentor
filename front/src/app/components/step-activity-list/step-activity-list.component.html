@@ -1,5 +1,5 @@
 <mat-tab-group *ngIf="activityCategories.length " color="secondary" [selectedIndex]="selectedTabIndex"
-    (selectedIndexChange)="onTabIndexChanged($event)" animationDuration="0ms" class="mt-4 w-full">
+    (selectedIndexChange)="onTabIndexChanged($event)" animationDuration="0ms" class="w-full h-fit">
     <mat-tab *ngFor="let categ of activityCategories; let index = index">
         <ng-template mat-tab-label>
             <mat-icon [title]="categ.name">{{getCategoryIconName(categ.code)}}</mat-icon>
@@ -7,36 +7,40 @@
 
         <div *ngIf="!selectedStepActivitiesByCateg.length" class="mt-8 h-24">
             <p>Aucune activité trouvée.</p>
-            <button mat-button color="primary" (click)="onClickSearchActivitiesButton()">Chercher
-                des activités</button>
+            <button mat-button color="primary" (click)="onClickSearchActivitiesButton()">
+                Chercher des activités
+            </button>
         </div>
 
-        <mat-card class="activity-card w-11/12 mt-4 mb-2 flex mx-auto"
-            *ngFor="let activity of selectedStepActivitiesByCateg; let i = index">
-            <div *ngIf="showAllActivities || i<3">
-                <mat-card-header class="mb-2 justify-center">
-                    <mat-card-title class="text-lg text-center">
-                        {{ activity.name }}
-                        <span *ngIf="activity.location">
-                            ({{activity.location}})
-                        </span>
-                    </mat-card-title>
-                    <mat-card-subtitle>{{activity.type}}</mat-card-subtitle>
-                </mat-card-header>
+        <mat-card class="activity-card w-full flex mx-auto"
+            *ngFor="let activity of getActivitiesToDisplay(); let i = index">
+            <mat-card-header class="justify-center" [ngClass]="i%2==0 ? 'bg-gray-100' : ''">
+                <mat-card-title class="text-lg text-center">
+                    {{ activity.name }}
+                    <span *ngIf="activity.location">
+                        ({{activity.location}})
+                    </span>
+                </mat-card-title>
+                <mat-card-subtitle>{{activity.type}}</mat-card-subtitle>
+            </mat-card-header>
 
-                <mat-card-content>
-                    <p>{{activity.description}}</p>
-                        <span class="font-light italic flex justify-end">
-                            À partir de {{activity.cost}}€
-                            <mat-icon class="material-icons-outlined mt-auto text-base" #tooltip="matTooltip"
-                                matTooltip="Ce prix est une estimation du coût total. Cela peut ne pas refléter la réalité."
-                                matTooltipPosition="above">info</mat-icon>
-                        </span>
-                </mat-card-content>
-            </div>
+            <mat-card-content [ngClass]="i%2==0 ? 'bg-gray-100 border-b-gray-300' : ''">
+                <p>{{activity.description}}</p>
+                <span class="font-light italic flex justify-end">
+                    À partir de {{activity.cost}}€
+                    <mat-icon class="material-icons-outlined mt-auto text-base" #tooltip="matTooltip"
+                        matTooltip="Ce prix est une estimation du coût total. Cela peut ne pas refléter la réalité."
+                        matTooltipPosition="above">info</mat-icon>
+                </span>
+            </mat-card-content>
         </mat-card>
 
-        <button mat-button color="primary" (click)="onClickShowAllActivitiesButton()"
-            *ngIf="!showAllActivities && selectedStepActivitiesByCateg.length > 3">Voir plus</button>
+        <button mat-button (click)="onClickShowAllActivitiesButton()"
+            *ngIf="!showAllActivities && selectedStepActivitiesByCateg.length > 3" class="mt-2">
+            <mat-icon class="text-quinary">add</mat-icon>
+            <span class="text-quinary h-full">
+                Voir plus
+            </span>
+        </button>
     </mat-tab>
 </mat-tab-group>

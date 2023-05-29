@@ -19,7 +19,7 @@ enum ActivityCategoryIcon {
 @Component({
   selector: 'app-step-activity-list',
   templateUrl: './step-activity-list.component.html',
-  styleUrls: ['./step-activity-list.component.css']
+  styleUrls: ['./step-activity-list.component.scss']
 })
 export class StepActivityListComponent {
   @Input('selectedStep') selectedStep!: TripStep;
@@ -68,5 +68,9 @@ export class StepActivityListComponent {
 
   onClickShowAllActivitiesButton() {
     this.showAllActivities = true;
+  }
+
+  getActivitiesToDisplay() {
+    return this.showAllActivities ? this.selectedStepActivitiesByCateg : this.selectedStepActivitiesByCateg.slice(0,3);
   }
 }

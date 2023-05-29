@@ -4,12 +4,13 @@ import * as moment from 'moment';
 import { Trip } from 'src/app/models/Trip';
 import { TripStep } from './../../models/TripStep';
 import { TripCreatorService } from './../../services/trip-creator.service';
+import { environment } from './../../environment';
 
 
 @Component({
   selector: 'app-trip-result',
   templateUrl: './trip-result.component.html',
-  styleUrls: ['./trip-result.component.css']
+  styleUrls: ['./trip-result.component.scss']
 })
 export class TripResultComponent {
   trip: Trip;
@@ -17,6 +18,8 @@ export class TripResultComponent {
   selectedStep: TripStep;
   nextStep: TripStep | null;
   activitiesLoading: boolean = false;
+  showDetails = false;
+  isMobile = environment.platform.isMobile;
 
   constructor(private tripCreatorService: TripCreatorService, private router: Router) {
     this.trip = this.router.getCurrentNavigation()?.extras?.state?.["trip"];
@@ -39,6 +42,7 @@ export class TripResultComponent {
 
   onClickMenuStepButton(index: any) {
     this.selectedStep = this.trip.steps[index];
+    this.showDetails = true;
   }
 
   computeLeavingDate(startingDate: any, duration: any) {
@@ -47,9 +51,14 @@ export class TripResultComponent {
 
   handleStepMarkerClicked(event: any) {
     this.selectedStep = event;
+    this.showDetails = true;
   }
 
   onSearchNewActivities() {
     this.activitiesLoading = true;
+  }
+
+  onTapShowDetails() {
+    this.showDetails = !this.showDetails;
   }
 }

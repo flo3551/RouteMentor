@@ -1,0 +1,19 @@
+::ng-deep {
+    div.mdc-tab[aria-selected=true] {
+        mat-icon {
+            color: theme('colors.quinary');
+        }
+
+        span.mdc-tab-indicator span.mdc-tab-indicator__content--underline {
+            border-color: theme('colors.quinary') !important;
+        }
+    }
+
+    div[cdkscrollable] {
+        overflow: hidden;
+    }
+
+    mat-card-header {
+        padding-bottom: 0.5rem !important;
+    }
+}

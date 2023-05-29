@@ -1,0 +1,21 @@
+.selected-step {
+    background-color: theme('colors.quinary');
+    color: white;
+}
+
+::ng-deep {
+    #showDetailsButton.mdc-button {
+        padding: 0 !important;
+        height: 100% !important;
+
+        mat-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 0 !important;
+            height: 3rem !important;
+            width: 3rem !important;
+            font-size: 2rem !important;
+        }
+    }
+}
