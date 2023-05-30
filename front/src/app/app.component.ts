@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
 import { environment } from '../environments/environment';
+import 'dotenv/config'
 
 @Component({
   selector: 'app-root',

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ACCESS_TOKEN } from '../secret/mapbox-access-token';
 import { lastValueFrom } from 'rxjs';
 
 @Injectable({
@@ -11,7 +10,7 @@ export class MapboxApiService {
   constructor(private httpClient: HttpClient) { }
 
   public searchForCity(searchText: string): Promise<{ cityName: string, latitude: number, longitude: number }[]> {
-    let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchText}.json?proximity=ip&types=place&access_token=${ACCESS_TOKEN}`;
+    let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchText}.json?proximity=ip&types=place&access_token=${process.env["MAPBOX_API_ACCESS_TOKEN"]}`;
 
     return lastValueFrom(this.httpClient.get(url))
       .then((response: any) => {
@@ -33,7 +32,7 @@ export class MapboxApiService {
   }
 
   public getCityCoordinate(cityName: string): Promise<{ latitude: number, longitude: number }> {
-    let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(cityName)}.json?access_token=${ACCESS_TOKEN}`;
+    let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(cityName)}.json?access_token=${process.env["MAPBOX_API_ACCESS_TOKEN"]}`;
     return lastValueFrom(this.httpClient.get(url))
       .then((response: any) => {
         if (response && response.features.length) {

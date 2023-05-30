@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { Trip } from 'src/app/models/Trip';
-import { ACCESS_TOKEN } from 'src/app/secret/mapbox-access-token';
 import { TripStep } from './../../models/TripStep';
 import { MapboxApiService } from './../../services/mapbox-api.service';
 
@@ -21,7 +20,7 @@ export class MapRoadtripComponent implements AfterViewInit {
   startLongitude?: number;
 
   constructor(private mapboxService: MapboxApiService) {
-    (mapboxgl as any).accessToken = ACCESS_TOKEN;
+    (mapboxgl as any).accessToken = process.env["MAPBOX_API_ACCESS_TOKEN"];
   }
 
   ngAfterViewInit() {
