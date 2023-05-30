@@ -14,8 +14,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema routementor
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `routementor` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `routementor` ;
+CREATE SCHEMA IF NOT EXISTS `routementor` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `routementor`;
 
 -- -----------------------------------------------------
 -- Table `routementor`.`activitycategory`
@@ -24,11 +24,7 @@ CREATE TABLE IF NOT EXISTS `routementor`.`activitycategory` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `code` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 11
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`));
 
 
 -- -----------------------------------------------------
@@ -38,10 +34,7 @@ CREATE TABLE IF NOT EXISTS `routementor`.`country` (
   `code` CHAR(3) NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`code`),
-  INDEX `idx_country_code` (`code` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  INDEX `idx_country_code` (`code` ASC));
 
 
 -- -----------------------------------------------------
@@ -51,14 +44,11 @@ CREATE TABLE IF NOT EXISTS `routementor`.`city` (
   `name` VARCHAR(255) NOT NULL,
   `countryCode` CHAR(3) NOT NULL,
   PRIMARY KEY (`name`, `countryCode`),
-  INDEX `city_ibfk_1` (`countryCode` ASC) VISIBLE,
-  INDEX `idx_city_name_country` (`name` ASC, `countryCode` ASC) VISIBLE,
+  INDEX `city_ibfk_1` (`countryCode` ASC),
+  INDEX `idx_city_name_country` (`name` ASC, `countryCode` ASC),
   CONSTRAINT `city_ibfk_1`
     FOREIGN KEY (`countryCode`)
-    REFERENCES `routementor`.`country` (`code`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+    REFERENCES `routementor`.`country` (`code`));
 
 
 -- -----------------------------------------------------
@@ -75,19 +65,15 @@ CREATE TABLE IF NOT EXISTS `routementor`.`activity` (
   `cityName` VARCHAR(255) NULL DEFAULT NULL,
   `cityCountryCode` CHAR(3) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `city` (`city` ASC) VISIBLE,
-  INDEX `category` (`category` ASC) VISIBLE,
-  INDEX `FK_activity_city` (`cityName` ASC, `cityCountryCode` ASC) VISIBLE,
+  INDEX `city` (`city` ASC),
+  INDEX `category` (`category` ASC),
+  INDEX `FK_activity_city` (`cityName` ASC, `cityCountryCode` ASC),
   CONSTRAINT `activity_ibfk_2`
     FOREIGN KEY (`category`)
     REFERENCES `routementor`.`activitycategory` (`id`),
   CONSTRAINT `FK_activity_city`
     FOREIGN KEY (`cityName` , `cityCountryCode`)
-    REFERENCES `routementor`.`city` (`name` , `countryCode`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 7222
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+    REFERENCES `routementor`.`city` (`name` , `countryCode`));
 
 
 -- -----------------------------------------------------
@@ -104,10 +90,7 @@ CREATE TABLE IF NOT EXISTS `routementor`.`trip` (
   `budget` DECIMAL(10,2) NOT NULL,
   `nbAdults` INT NOT NULL,
   `nbChilds` INT NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`));
 
 
 -- -----------------------------------------------------
@@ -130,11 +113,11 @@ CREATE TABLE IF NOT EXISTS `routementor`.`tripstep` (
   `fromCityName` VARCHAR(255) NULL DEFAULT NULL,
   `fromCityCountryCode` CHAR(3) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `trip` (`trip` ASC) VISIBLE,
-  INDEX `fromCity` (`fromCity` ASC) VISIBLE,
-  INDEX `toCity` (`toCity` ASC) VISIBLE,
-  INDEX `FK_tripstep_tocity` (`toCityName` ASC, `toCityCountryCode` ASC) VISIBLE,
-  INDEX `FK_tripstep_fromcity` (`fromCityName` ASC, `fromCityCountryCode` ASC) VISIBLE,
+  INDEX `trip` (`trip` ASC),
+  INDEX `fromCityName` (`fromCityName` ASC),
+  INDEX `toCityName` (`toCityName` ASC),
+  INDEX `FK_tripstep_tocity` (`toCityName` ASC, `toCityCountryCode` ASC),
+  INDEX `FK_tripstep_fromcity` (`fromCityName` ASC, `fromCityCountryCode` ASC),
   CONSTRAINT `FK_tripstep_fromcity`
     FOREIGN KEY (`fromCityName` , `fromCityCountryCode`)
     REFERENCES `routementor`.`city` (`name` , `countryCode`),
@@ -143,10 +126,7 @@ CREATE TABLE IF NOT EXISTS `routementor`.`tripstep` (
     REFERENCES `routementor`.`city` (`name` , `countryCode`),
   CONSTRAINT `tripstep_ibfk_1`
     FOREIGN KEY (`trip`)
-    REFERENCES `routementor`.`trip` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+    REFERENCES `routementor`.`trip` (`id`));
 
 
 -- -----------------------------------------------------
@@ -156,16 +136,13 @@ CREATE TABLE IF NOT EXISTS `routementor`.`stepactivity` (
   `step` INT NOT NULL,
   `activity` INT NOT NULL,
   PRIMARY KEY (`step`, `activity`),
-  INDEX `activity` (`activity` ASC) VISIBLE,
+  INDEX `activity` (`activity` ASC),
   CONSTRAINT `stepactivity_ibfk_1`
     FOREIGN KEY (`step`)
     REFERENCES `routementor`.`tripstep` (`id`),
   CONSTRAINT `stepactivity_ibfk_2`
     FOREIGN KEY (`activity`)
-    REFERENCES `routementor`.`activity` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+    REFERENCES `routementor`.`activity` (`id`));
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
