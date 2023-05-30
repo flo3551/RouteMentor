@@ -25,16 +25,16 @@ export class HomeFormComponent {
 
   tripDetailsForm = new FormGroup({
     departureArrivalForm: new FormGroup({
-      start: new FormControl<Date | null>(new Date("2023/06/30"), [Validators.required]),
-      end: new FormControl<Date | null>(new Date("2023/07/16"), [Validators.required]),
+      start: new FormControl<Date | null>(null, [Validators.required]),
+      end: new FormControl<Date | null>(null, [Validators.required]),
       departureCity: new FormControl('', [Validators.required]),
       arrivalCity: new FormControl('', [Validators.required]),
     }),
-    budget: new FormControl<number>(1200, [Validators.required, Validators.min(1)]),
-    nbAdults: new FormControl<number>(2, [Validators.required, Validators.min(1)]),
+    budget: new FormControl<number>(1, [Validators.required, Validators.min(1)]),
+    nbAdults: new FormControl<number>(0, [Validators.required, Validators.min(1)]),
     nbChild: new FormControl<number>(0),
-    transports: new FormControl<TransportType>(TransportType.Car, [Validators.required]),
-    hostings: new FormControl<HostingType[]>([HostingType.Rental], Validators.required),
+    transports: new FormControl<TransportType | null>(null, [Validators.required]),
+    hostings: new FormControl<HostingType[]>([], Validators.required),
     interests: new FormControl<Interest[]>([], Validators.required)
   });
 
