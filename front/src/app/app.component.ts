@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
-import { environment } from './environment';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',

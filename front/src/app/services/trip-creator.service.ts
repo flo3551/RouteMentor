@@ -4,18 +4,18 @@ import { FormGroup } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import { HostingType } from '../enums/hosting-type';
 import { TripStep } from './../models/TripStep';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TripCreatorService {
-  private readonly API_DEV_URL = "http://localhost:3000/";
 
   constructor(private httpClient: HttpClient) { }
 
   createTrip(startCity: any, startDate: any, endCity: any, endDate: any, hostings: string[], nbAdults: number, nbChilds: number, budget: number, transportType: string) {
 
-    return lastValueFrom(this.httpClient.post(this.API_DEV_URL + "trip/getTripSteps", {
+    return lastValueFrom(this.httpClient.post(environment.server_url + "trip/getTripSteps", {
       "startCity": startCity,
       "startDate": startDate,
       "endCity": endCity,
@@ -38,7 +38,7 @@ export class TripCreatorService {
   }
 
   getActivities(tripSteps: TripStep[], interests: { name: string, code: string }[]): Promise<TripStep[]> {
-    return lastValueFrom(this.httpClient.post(this.API_DEV_URL + "steps/getStepsActivities", {
+    return lastValueFrom(this.httpClient.post(environment.server_url + "steps/getStepsActivities", {
       "steps": tripSteps,
       "interests": interests
     }))

@@ -3,5 +3,6 @@ export const environment = {
         isMobile: false,
         isDesktop: false,
         isTablet: false,
-    }
+    },
+    server_url: "http://38.242.254.164:3000/"
 }

@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { Trip } from 'src/app/models/Trip';
 import { TripStep } from './../../models/TripStep';
 import { TripCreatorService } from './../../services/trip-creator.service';
-import { environment } from './../../environment';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
