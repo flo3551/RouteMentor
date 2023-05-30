@@ -17,6 +17,7 @@ export class AppComponent {
 
   constructor() {
     this.userAgent = navigator.userAgent || navigator.vendor || (window as any).opera || undefined;
+    this.setMapBoxApiToken();
     this.setUserPlatform();
   }
 
@@ -24,6 +25,10 @@ export class AppComponent {
     environment.platform.isMobile = this.isMobileDevice();
     environment.platform.isTablet = this.isTabletDevice();
     environment.platform.isDesktop = !environment.platform.isMobile && environment.platform.isTablet;
+  }
+
+  private setMapBoxApiToken() {
+    environment.mapboxApiToken = process.env["MAPBOX_API_ACCESS_TOKEN"] || "";
   }
 
   isMobileDevice(): boolean {

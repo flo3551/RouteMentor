@@ -4,5 +4,6 @@ export const environment = {
         isDesktop: false,
         isTablet: false,
     },
-    server_url: "http://38.242.254.164:3000/"
+    server_url: "http://38.242.254.164:3000/",
+    mapboxApiToken: ""
 }
