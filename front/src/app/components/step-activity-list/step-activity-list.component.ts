@@ -1,20 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ActivityCategoryIcon } from 'src/app/enums/activitycategory-icons.enum';
 import { ActivityCategory } from 'src/app/models/ActivityCategory';
 import { StepActivity } from 'src/app/models/StepActivity';
 import { TripStep } from 'src/app/models/TripStep';
-
-enum ActivityCategoryIcon {
-  NAT = "forest",
-  CUL = "auto_stories",
-  GAS = "restaurant",
-  VNO = "local_bar",
-  SPT = "hiking",
-  DET = "self_improvement",
-  SHO = "shopping_bag",
-  EVS = "stars",
-  FAM = "family_restroom",
-  ARC = "location_city"
-}
 
 @Component({
   selector: 'app-step-activity-list',

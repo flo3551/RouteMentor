@@ -10,6 +10,7 @@ import { ActivityCategory } from 'src/app/models/ActivityCategory';
 import { Trip } from 'src/app/models/Trip';
 import { TripStep } from './../../models/TripStep';
 import { TripCreatorService } from './../../services/trip-creator.service';
+import { ActivityCategoryIcon } from 'src/app/enums/activitycategory-icons.enum';
 
 @Component({
   selector: 'app-home-form',
@@ -17,9 +18,10 @@ import { TripCreatorService } from './../../services/trip-creator.service';
   styleUrls: ['./home-form.component.scss']
 })
 export class HomeFormComponent {
-  transportType: typeof TransportType = TransportType;
-  hostingType: typeof HostingType = HostingType;
-  interests: typeof Interest = Interest;
+  transportType = TransportType;
+  hostingType = HostingType;
+  interests = Interest;
+  activityCategoryIcon = ActivityCategoryIcon;
 
   tripDetailsForm = new FormGroup({
     departureArrivalForm: new FormGroup({

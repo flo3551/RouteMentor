@@ -1,0 +1,39 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+::ng-deep {
+    mat-toolbar {
+        .nav-spacer {
+            display: flex;
+            flex-grow: 2;
+        }
+
+        .buttons-container {
+            flex-grow: 1;
+
+            button {
+                font-size: 1rem !important;
+
+                &:hover {
+                    mat-icon {
+                        color: theme("colors.primary") !important;
+                    }
+                }
+
+                mat-icon {
+                    font-size: 1.5rem !important;
+                    height: 1.5rem !important;
+                    width: 1.5rem !important;
+                }
+            }
+        }
+    }
+
+    mat-sidenav {
+        button {
+            justify-content: unset !important;
+        }
+    }
+}

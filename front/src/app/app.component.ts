@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
+import { MatSidenav } from '@angular/material/sidenav';
 import { environment } from './environment';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class AppComponent {
+  @ViewChild('sidenav') sidenav!: MatSidenav;
   title = 'RouteMentor';
   userAgent: string;
+  environment = environment;
 
   constructor() {
     this.userAgent = navigator.userAgent || navigator.vendor || (window as any).opera || undefined;
@@ -31,6 +34,10 @@ export class AppComponent {
   isTabletDevice(): boolean {
     const regex = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/
     return regex.test(this.userAgent.toLowerCase());
+  }
+
+  onClickMenuButton() {
+    this.sidenav.opened ? this.sidenav.close() : this.sidenav.open();
   }
 }
 

@@ -1,5 +1,5 @@
-<mat-tab-group *ngIf="activityCategories.length " color="secondary" [selectedIndex]="selectedTabIndex"
-    (selectedIndexChange)="onTabIndexChanged($event)" animationDuration="0ms" class="w-full h-fit">
+<mat-tab-group *ngIf="activityCategories.length" color="secondary" [selectedIndex]="selectedTabIndex"
+    (selectedIndexChange)="onTabIndexChanged($event)" animationDuration="0ms" class="w-full h-fit max-w-full">
     <mat-tab *ngFor="let categ of activityCategories; let index = index">
         <ng-template mat-tab-label>
             <mat-icon [title]="categ.name">{{getCategoryIconName(categ.code)}}</mat-icon>

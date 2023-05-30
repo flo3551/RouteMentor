@@ -2,11 +2,11 @@
     background-color: theme('colors.quinary');
     color: white;
 }
+.step-header {
+    padding-top: 0.5rem;
+}
 
 ::ng-deep {
-    mat-drawer-content {
-        padding-top: 0.5rem;
-    }
 
     #showDetailsButton.mdc-button {
         padding: 0 !important;

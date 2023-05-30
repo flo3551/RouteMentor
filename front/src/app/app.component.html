@@ -1,1 +1,66 @@
-<router-outlet></router-outlet>
+<div class="h-screen flex flex-col">
+    <ng-container *ngIf="!environment.platform.isMobile">
+        <!-- Toolbar pour desktop -->
+        <mat-toolbar class="flex h-16 justify-between p-0 md:p-8">
+            <span class="chewy-font text-primary item-start">
+                <img src="/assets/img/logo_navbar.png" />
+            </span>
+            <span class="nav-spacer"></span>
+            <div class="flex buttons-container justify-around">
+                <button mat-button>
+                    <mat-icon class="text-quinary material-symbols-outlined">language</mat-icon>
+                    Explorer
+                </button>
+                <button mat-button>
+                    <mat-icon class="text-quinary material-symbols-outlined">heart_check</mat-icon>
+                    Mes voyages
+                </button>
+                <button mat-button>
+                    <mat-icon class="text-quinary material-symbols-outlined">account_circle</mat-icon>
+                    Se connecter
+                </button>
+            </div>
+        </mat-toolbar>
+
+        <!-- Contenu principal pour desktop -->
+        <div class="flex flex-grow">
+            <router-outlet></router-outlet>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="environment.platform.isMobile">
+        <!-- Toolbar pour mobile -->
+        <mat-toolbar class="h-16 justify-between p-0 md:p-8">
+            <span class="chewy-font text-primary item-start ml-2">
+                <img src="/assets/img/logo_navbar.png" />
+            </span>
+            <span class="nav-spacer"></span>
+            <button mat-icon-button (click)="onClickMenuButton()">
+                <mat-icon class="text-quinary material-symbols-outlined">menu</mat-icon>
+            </button>
+        </mat-toolbar>
+
+        <!-- Sidebar mobile -->
+        <mat-sidenav-container class="flex flex-grow">
+            <mat-sidenav #sidenav mode="over" position="end">
+                <div class="flex flex-col space-y-4 m-2">
+                    <button mat-button class="flex w-full">
+                        <mat-icon class="text-quinary material-symbols-outlined item-start">account_circle</mat-icon>
+                        <span class="item-end">Se connecter</span>
+                    </button>
+                    <button mat-button class="flex w-full">
+                        <mat-icon class="text-quinary material-symbols-outlined item-start">heart_check</mat-icon>
+                        <span class="item-end">Mes voyages</span>
+                    </button>
+                    <button mat-button class="w-full">
+                        <mat-icon class="text-quinary material-symbols-outlined item-start">language</mat-icon>
+                        <span class="item-end">Explorer</span>
+                    </button>
+                </div>
+            </mat-sidenav>
+            <mat-sidenav-content class="flex flex-grow">
+                <router-outlet></router-outlet>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </ng-container>
+</div>
