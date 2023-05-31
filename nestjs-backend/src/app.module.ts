@@ -1,5 +1,6 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { ActivityModule } from './activity/activity.module';
 import { ActivityService } from './activity/activity.service';
 import { ActivitycategoryController } from './activitycategory/activitycategory.controller';
@@ -12,14 +13,18 @@ import { CityService } from './city/city.service';
 import { CountryModule } from './country/country.module';
 import { CountryService } from './country/country.service';
 import { DatabaseModule } from './database/database.module';
+import { MapboxController } from './mapbox/mapbox.controller';
+import { MapboxModule } from './mapbox/mapbox.module';
+import { MapboxService } from './mapbox/mapbox.service';
 import { OpenaiController } from './openai/openai.controller';
 import { OpenaiModule } from './openai/openai.module';
 import { OpenAiService } from './openai/openai.service';
-import { TripModule } from './trip/trip.module';
 import { StepsModule } from './steps/steps.module';
+import { TripModule } from './trip/trip.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,
     HttpModule,
     OpenaiModule,
@@ -29,11 +34,13 @@ import { StepsModule } from './steps/steps.module';
     CountryModule,
     TripModule,
     StepsModule,
+    MapboxModule,
   ],
   controllers: [
     AppController,
     OpenaiController,
-    ActivitycategoryController
+    ActivitycategoryController,
+    MapboxController
   ],
   providers: [
     AppService,
@@ -41,7 +48,8 @@ import { StepsModule } from './steps/steps.module';
     ActivityService,
     ActivitycategoryService,
     CityService,
-    CountryService
+    CountryService,
+    MapboxService
   ],
 })
 export class AppModule { }

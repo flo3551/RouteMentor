@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
 import { environment } from '../environments/environment';
-import 'dotenv/config'
 
 @Component({
   selector: 'app-root',
@@ -18,7 +17,6 @@ export class AppComponent {
 
   constructor() {
     this.userAgent = navigator.userAgent || navigator.vendor || (window as any).opera || undefined;
-    this.setMapBoxApiToken();
     this.setUserPlatform();
   }
 
@@ -26,10 +24,6 @@ export class AppComponent {
     environment.platform.isMobile = this.isMobileDevice();
     environment.platform.isTablet = this.isTabletDevice();
     environment.platform.isDesktop = !environment.platform.isMobile && environment.platform.isTablet;
-  }
-
-  private setMapBoxApiToken() {
-    environment.mapboxApiToken = process.env["MAPBOX_API_ACCESS_TOKEN"] || "";
   }
 
   isMobileDevice(): boolean {

@@ -19,19 +19,21 @@ export class MapRoadtripComponent implements AfterViewInit {
   startLatitude?: number;
   startLongitude?: number;
 
-  constructor(private mapboxService: MapboxApiService) {
-    (mapboxgl as any).accessToken = process.env["MAPBOX_API_ACCESS_TOKEN"];
-  }
+  constructor(private mapboxService: MapboxApiService) { }
 
   ngAfterViewInit() {
-    this.map = new mapboxgl.Map({
-      container: this.mapElement.nativeElement, // container ID
-      style: 'mapbox://styles/mapbox/streets-v12', // style URL
-      center: [-74.5, 40], // starting position [lng, lat]
-      zoom: 9, // starting zoom
-    });
+    this.mapboxService.getApiToken()
+      .then((tokenObject: any) => {
+        (mapboxgl as any).accessToken = tokenObject.token;
+        this.map = new mapboxgl.Map({
+          container: this.mapElement.nativeElement, // container ID
+          style: 'mapbox://styles/mapbox/streets-v12', // style URL
+          center: [-74.5, 40], // starting position [lng, lat]
+          zoom: 9, // starting zoom
+        });
 
-    this.getLocationsCoordinates()
+        return this.getLocationsCoordinates()
+      })
       .then(async () => {
         await this.setMarkers();
         this.addMarkersClickEventListener();
@@ -117,6 +119,6 @@ export class MapRoadtripComponent implements AfterViewInit {
     }, new mapboxgl.LngLatBounds());
 
     // Fit the map to the bounds of the markers
-    this.map!.fitBounds(bounds, { padding: 50 });
+    this.map!.fitBounds(bounds, { padding: 100 });
   }
 }

@@ -54,3 +54,5 @@ front/src/app/secret/
 
 # Others
 package-lock.json
+nestjs-backend/.env
+front/dist/
