@@ -23,9 +23,9 @@
         </mat-toolbar>
 
         <!-- Contenu principal pour desktop -->
-        <!-- <div class="flex flex-grow"> -->
+        <div class="flex-grow">
             <router-outlet></router-outlet>
-        <!-- </div> -->
+        </div>
     </ng-container>
 
     <ng-container *ngIf="environment.platform.isMobile">
@@ -41,11 +41,12 @@
         </mat-toolbar>
 
         <!-- Sidebar mobile -->
-        <mat-sidenav-container class="h-full">
+        <mat-sidenav-container class="flex-grow">
             <mat-sidenav #sidenav mode="over" position="end">
                 <div class="flex flex-col space-y-4 m-2">
                     <button mat-button class="flex w-full">
-                        <mat-icon class="text-quinary material-symbols-outlined item-start">account_circle</mat-icon>
+                        <mat-icon class="text-quinary material-symbols-outlined item-start">account_circle
+                        </mat-icon>
                         <span class="item-end">Se connecter</span>
                     </button>
                     <button mat-button class="flex w-full">
@@ -58,7 +59,7 @@
                     </button>
                 </div>
             </mat-sidenav>
-            <mat-sidenav-content class="h-full">
+            <mat-sidenav-content class="flex-grow">
                 <router-outlet></router-outlet>
             </mat-sidenav-content>
         </mat-sidenav-container>
