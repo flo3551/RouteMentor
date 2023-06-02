@@ -2,7 +2,7 @@ import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Activity } from './activity.entity';
 import { TripStep } from './tripstep.entity';
 
-@Entity('StepActivity')
+@Entity('stepactivity')
 export class StepActivity {
     @PrimaryGeneratedColumn()
     id: number;

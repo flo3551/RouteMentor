@@ -1,6 +1,6 @@
 import { Column, Entity, Index, PrimaryColumn } from 'typeorm';
 
-@Entity('Country')
+@Entity('country')
 export class Country {
   @Index('idx_country_code')
   @PrimaryColumn({ type: 'char', length: 3 })

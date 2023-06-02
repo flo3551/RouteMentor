@@ -1,7 +1,7 @@
 import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { Country } from './country.entity';
 
-@Entity('City')
+@Entity('city')
 export class City {
   @PrimaryColumn({ type: 'varchar', length: 255 })
   name: string;

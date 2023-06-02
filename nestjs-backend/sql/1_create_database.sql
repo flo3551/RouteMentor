@@ -59,7 +59,6 @@ CREATE TABLE IF NOT EXISTS `routementor`.`activity` (
   `type` VARCHAR(255) NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   `description` TEXT NULL DEFAULT NULL,
-  `city` INT NOT NULL,
   `cost` VARCHAR(255) NULL DEFAULT NULL,
   `category` INT NOT NULL,
   `cityName` VARCHAR(255) NULL DEFAULT NULL,

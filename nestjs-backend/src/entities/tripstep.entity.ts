@@ -2,7 +2,7 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 't
 import { City } from './city.entity';
 import { Trip } from './trip.entity';
 
-@Entity('TripStep')
+@Entity('tripstep')
 export class TripStep {
     @PrimaryGeneratedColumn()
     id: number;
