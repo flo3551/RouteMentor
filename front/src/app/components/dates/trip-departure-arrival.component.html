@@ -7,7 +7,7 @@
             <mat-form-field appearance="outline" class="w-44">
                 <mat-label class="text-sm">Quand partir ?</mat-label>
                 <input matInput formControlName="start" [min]="minDepartureDate" [matDatepicker]="pickerDeparture"
-                    (dateInput)="onDepartureDateChange($event)">
+                    (dateInput)="onDepartureDateChange($event)" (focus)="pickerDeparture.open()">
                 <mat-datepicker-toggle matIconSuffix [for]="pickerDeparture"></mat-datepicker-toggle>
                 <mat-datepicker #pickerDeparture></mat-datepicker>
             </mat-form-field>
@@ -18,7 +18,7 @@
             <mat-form-field appearance="outline" class="w-44">
                 <mat-label class="text-sm">Arrivée le ?</mat-label>
                 <input matInput formControlName="end" [min]="form.controls['start'].value || minDepartureDate"
-                    [matDatepicker]="pickerArrival">
+                    [matDatepicker]="pickerArrival" (focus)="pickerArrival.open()">
                 <mat-datepicker-toggle matIconSuffix [for]="pickerArrival"></mat-datepicker-toggle>
                 <mat-datepicker #pickerArrival></mat-datepicker>
             </mat-form-field>
