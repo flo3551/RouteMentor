@@ -18,12 +18,14 @@ export class InputQuantityComponent {
     this.formControl = this.controlContainer.control?.get(this.formControlName) as FormControl;
   }
 
-  increaseValue() {
+  increaseValue(event: any) {
+    event.preventDefault();
     let currentValue = this.formControl.value;
     this.formControl.setValue(currentValue + 1);
   }
 
-  reduceValue() {
+  reduceValue(event: any) {
+    event.preventDefault();
     let currentValue = this.formControl.value;
     this.formControl.setValue(currentValue - 1);
   }

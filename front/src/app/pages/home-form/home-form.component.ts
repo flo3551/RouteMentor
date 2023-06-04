@@ -31,7 +31,7 @@ export class HomeFormComponent {
       arrivalCity: new FormControl('', [Validators.required]),
     }),
     budget: new FormControl<number>(1, [Validators.required, Validators.min(1)]),
-    nbAdults: new FormControl<number>(0, [Validators.required, Validators.min(1)]),
+    nbAdults: new FormControl<number>(1, [Validators.min(1)]),
     nbChild: new FormControl<number>(0),
     transports: new FormControl<TransportType | null>(null, [Validators.required]),
     hostings: new FormControl<HostingType[]>([], Validators.required),
