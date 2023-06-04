@@ -36,4 +36,13 @@
             justify-content: unset !important;
         }
     }
+
+
+    .mdc-notched-outline__notch {
+        border-right: 0px !important;
+    }
+
+    .mat-datepicker-toggle {
+        color: theme('colors.quinary');
+    }
 }

@@ -37,14 +37,14 @@
         </div>
         <div class="space-x-2">
             <mat-form-field appearance="outline" class="w-44">
-                <mat-label class="font-bold text-quinary">Date départ</mat-label>
+                <mat-label class="font-bold">Date départ</mat-label>
                 <input matInput formControlName="start" [min]="minDepartureDate" [matDatepicker]="pickerDepartureMobile"
                     (dateInput)="onDepartureDateChange($event)" (focus)="pickerDepartureMobile.open()">
-                <mat-datepicker-toggle matIconSuffix [for]="pickerDepartureMobile"></mat-datepicker-toggle>
+                <mat-datepicker-toggle matIconSuffix [for]="pickerDepartureMobile" class="text-quinary"></mat-datepicker-toggle>
                 <mat-datepicker #pickerDepartureMobile></mat-datepicker>
             </mat-form-field>
             <mat-form-field appearance="outline" class="w-44">
-                <mat-label class="font-bold text-quinary">Date arrivée</mat-label>
+                <mat-label class="font-bold">Date arrivée</mat-label>
                 <input matInput formControlName="end" [min]="form.controls['start'].value || minDepartureDate"
                     [matDatepicker]="pickerArrivalMobile" (focus)="pickerArrivalMobile.open()">
                 <mat-datepicker-toggle matIconSuffix [for]="pickerArrivalMobile"></mat-datepicker-toggle>

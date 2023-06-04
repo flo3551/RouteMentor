@@ -66,10 +66,8 @@
                     <span matPrefix class="mx-4">
                         <mat-icon fontIcon="gite" class="text-quinary"></mat-icon>
                     </span>
-                    <mat-select [formControl]="tripDetailsForm.controls.interests" multiple
-                        placeholder="Qu'aimez-vous faire ?">
+                    <mat-select [formControl]="tripDetailsForm.controls.interests" multiple>
                         <mat-option [value]="interests.NAT">
-                            <!-- <span matPrefix class="mx-4"> -->
                             <mat-icon [fontIcon]="activityCategoryIcon.NAT"></mat-icon>
                             <span class="text-sm">{{interests.NAT.split('(')[0]}}</span>
                         </mat-option>
