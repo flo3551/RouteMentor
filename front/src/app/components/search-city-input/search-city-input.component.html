@@ -2,7 +2,7 @@
     <mat-label class="md:text-lg font-bold">
         {{isDeparture ? "Départ" : "Destination" }}
     </mat-label>
-    <span  matPrefix class="mx-2 md:mx-4">
+    <span  matPrefix class="p-2 md:px-4">
         <mat-icon [fontIcon]="isDeparture ? 'my_location' : 'pin_drop'" class="text-quinary"></mat-icon>
     </span>
     <input matInput aria-label="State" [matAutocomplete]="auto" (input)="searchModelChanged.next($event)">

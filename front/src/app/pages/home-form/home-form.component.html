@@ -27,7 +27,7 @@
             <div class="text-center flex items-center justify-center">
                 <mat-form-field appearance="outline">
                     <mat-label class="md:text-lg font-bold">Mode de transport</mat-label>
-                    <span matPrefix class="mx-4">
+                    <span matPrefix class="p-2 md:p-4">
                         <mat-icon fontIcon="commute" class="text-quinary"></mat-icon>
                     </span>
                     <mat-select formControlName="transports">
@@ -45,7 +45,7 @@
             <div class="text-center">
                 <mat-form-field appearance="outline">
                     <mat-label class="md:text-lg font-bold">Hébergement</mat-label>
-                    <span matPrefix class="mx-4">
+                    <span matPrefix class="p-2 md:p-4">
                         <mat-icon fontIcon="gite" class="text-quinary"></mat-icon>
                     </span>
                     <mat-select [formControl]="tripDetailsForm.controls.hostings" multiple>
@@ -63,7 +63,7 @@
             <div class="text-center">
                 <mat-form-field appearance="outline">
                     <mat-label class="md:text-lg font-bold">Centres d'intérêts</mat-label>
-                    <span matPrefix class="mx-4">
+                    <span matPrefix class="p-2 md:p-4">
                         <mat-icon fontIcon="gite" class="text-quinary"></mat-icon>
                     </span>
                     <mat-select [formControl]="tripDetailsForm.controls.interests" multiple>
