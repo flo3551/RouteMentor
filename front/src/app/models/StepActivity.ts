@@ -1,3 +1,4 @@
+import { ActivityAdapter } from "../adapters/Activity.adapter";
 import { ActivityCategory } from "./ActivityCategory";
 
 export class StepActivity {
@@ -6,10 +7,10 @@ export class StepActivity {
     name: string;
     description: string;
     location: string;
-    cost: string;
+    cost: number;
     activityCategory: ActivityCategory;
 
-    constructor(public _id: number, public _type: string, public _name: string, public _description: string, public _location: string, public _cost: string, public _activityCategory: ActivityCategory) {
+    constructor(public _id: number, public _type: string, public _name: string, public _description: string, public _location: string, public _cost: number, public _activityCategory: ActivityCategory) {
         this.id = _id;
         this.type = _type;
         this.name = _name;
@@ -25,8 +26,9 @@ export class StepActivity {
         for (let i = 0; i < json.length; i++) {
             const activity = json[i];
             let activityCategory = new ActivityCategory(activity.category.name, activity.category.code);
+            activity.activityCategory = activityCategory;
 
-            activities.push(new StepActivity(activity.id, activity.type, activity.name, activity.description, activity.location, activity.cost, activityCategory));
+            activities.push(new ActivityAdapter().adapt(activity));
         }
 
         return activities;

@@ -28,8 +28,7 @@
                         <p class="font-bold text-2xl text-quinary">{{ selectedStep.to }}
                         </p>
                         <p>
-                            {{selectedStep.date}} -
-                            {{computeLeavingDate(selectedStep.date,selectedStep.travelDuration)}}
+                            {{selectedStep.date}} - {{selectedStep.endDate}}
                         </p>
                     </div>
 
@@ -37,7 +36,8 @@
                         <p>Durée : {{selectedStep.travelDuration}} jours</p>
                         <p>
                             Hébergement : {{selectedStep.hostingName}}
-                            <span *ngIf="!(selectedStep.hostingCost === 150)">(à partir de {{selectedStep.hostingCost}} €
+                            <span *ngIf="!(selectedStep.hostingCost === 0)">(à partir de {{selectedStep.hostingCost}}
+                                €
                                 <mat-icon class="material-icons-outlined mt-auto text-base" #tooltip="matTooltip"
                                     matTooltip="Ce prix est une estimation du coût total. Cela peut ne pas refléter la réalité."
                                     matTooltipPosition="above">info</mat-icon>)
@@ -109,8 +109,7 @@
                             <p class="font-bold text-2xl text-quinary">{{ selectedStep.to }}
                             </p>
                             <p>
-                                {{selectedStep.date}} -
-                                {{computeLeavingDate(selectedStep.date,selectedStep.travelDuration)}}
+                                {{selectedStep.date}} - {{selectedStep.endDate}}
                             </p>
                         </div>
 
@@ -118,7 +117,8 @@
                             <p>Durée : {{selectedStep.travelDuration}} jours</p>
                             <p>
                                 Hébergement : {{selectedStep.hostingName}}
-                                <span *ngIf="!(selectedStep.hostingCost === 0)">(à partir de {{selectedStep.hostingCost}} €
+                                <span *ngIf="!(selectedStep.hostingCost === 0)">(à partir de
+                                    {{selectedStep.hostingCost}} €
                                     <mat-icon class="material-icons-outlined mt-auto text-base" #tooltip="matTooltip"
                                         matTooltip="Ce prix est une estimation du coût total. Cela peut ne pas refléter la réalité."
                                         matTooltipPosition="above">info</mat-icon>)

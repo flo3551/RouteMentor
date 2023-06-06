@@ -6,6 +6,7 @@ export class StepsService {
     private contextPrompt = "You are TravelGPT, a backend server for a roadtrip planner application. You create specific and logical journey to meet user needs. "
         + "As a backend server, you'll respond with an inline and no linebreak JSON object. No verbose, no explanation. JSON Object must match given format : ";
     private activitiesFormatPrompt = "{\"cityId\":[{\"type\": string,\"name\": string,\"description\": string,\"cost\": integer,\"city\": {\"name\": string,\"country\": {\"name\": string,\"code\": string}},\"category\": {\"name\": string,\"code\": string}}}]. "
+        + "where 'cost' is an integer in Euros"
         + "As a Travel guide backend, you'll provide 3 interesting activities for every interests criterias given by user in each city. "
         + "You must respond with real data and not sample activities. ";
     private activitiesVariablePrompt = "User Cities : #cities#. User interests : #interests#.";

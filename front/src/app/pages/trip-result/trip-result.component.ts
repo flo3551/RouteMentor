@@ -45,10 +45,6 @@ export class TripResultComponent {
     this.showDetails = true;
   }
 
-  computeLeavingDate(startingDate: any, duration: any) {
-    return moment(startingDate).add(duration, "days").format(startingDate.includes("-") ? "DD-MM-YYYY" : "DD/MM/YYYY");
-  }
-
   handleStepMarkerClicked(event: any) {
     this.selectedStep = event;
     this.showDetails = true;

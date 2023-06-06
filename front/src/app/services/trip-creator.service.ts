@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
-import { HostingType } from '../enums/hosting-type';
-import { TripStep } from './../models/TripStep';
 import { environment } from './../../environments/environment';
+import { TripStep } from './../models/TripStep';
 
 @Injectable({
   providedIn: 'root'
@@ -51,28 +49,5 @@ export class TripCreatorService {
           return Promise.reject("ERROR_FORMAT")
         }
       });
-  }
-
-  private getHostings(hostingsForm: FormGroup): string[] {
-    let selectedHostings: Array<string> = [];
-    // TODO: Handle "ownVehicle"
-
-    if (hostingsForm.get("hotel")?.value) {
-      selectedHostings.push(HostingType.Hotel);
-    }
-
-    if (hostingsForm.get("youthHotel")?.value) {
-      selectedHostings.push(HostingType.YouthHotel);
-    }
-
-    if (hostingsForm.get("camping")?.value) {
-      selectedHostings.push(HostingType.Camping);
-    }
-
-    if (hostingsForm.get("rental")?.value) {
-      selectedHostings.push(HostingType.Rental);
-    }
-
-    return selectedHostings;
   }
 }
