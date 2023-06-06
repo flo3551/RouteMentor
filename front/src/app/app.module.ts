@@ -34,6 +34,7 @@ import { SearchCityInputComponent } from './components/search-city-input/search-
 import { StepActivityListComponent } from './components/step-activity-list/step-activity-list.component';
 import { HomeFormComponent } from './pages/home-form/home-form.component';
 import { TripResultComponent } from './pages/trip-result/trip-result.component';
+import { WarningDialogComponent } from './components/warning-dialog/warning-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { TripResultComponent } from './pages/trip-result/trip-result.component';
     MapRoadtripComponent,
     LoadingDialogComponent,
     StepActivityListComponent,
-    InputQuantityComponent
+    InputQuantityComponent,
+    WarningDialogComponent
   ],
   imports: [
     BrowserModule,

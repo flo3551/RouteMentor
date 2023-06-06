@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+import { WarningDialogComponent } from 'src/app/components/warning-dialog/warning-dialog.component';
 import { Trip } from 'src/app/models/Trip';
+import { environment } from '../../../environments/environment';
 import { TripStep } from './../../models/TripStep';
 import { TripCreatorService } from './../../services/trip-creator.service';
-import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -21,13 +22,15 @@ export class TripResultComponent {
   showDetails = false;
   isMobile = environment.platform.isMobile;
 
-  constructor(private tripCreatorService: TripCreatorService, private router: Router) {
+  constructor(private tripCreatorService: TripCreatorService, private router: Router, private dialog: MatDialog) {
     this.trip = this.router.getCurrentNavigation()?.extras?.state?.["trip"];
     this.previousStep = null;
     this.selectedStep = this.trip.steps[0];
     this.nextStep = this.trip.steps[1];
 
     this.activitiesLoading = true;
+    this.dialog.open(WarningDialogComponent);
+
     this.tripCreatorService.getActivities(this.trip.steps, this.trip.activitiesCategories)
       .then((results: TripStep[]) => {
         this.trip.steps = results;

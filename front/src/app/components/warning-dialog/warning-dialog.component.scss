@@ -1,0 +1,13 @@
+:host {
+    display: block;
+    max-width: 600px;
+}
+
+::ng-deep {
+    mat-icon.title-icon  {
+        color: theme("colors.primary") !important;
+        font-size: 4rem !important;
+        height: 4rem !important;
+        width: 4rem !important;
+    }
+}
