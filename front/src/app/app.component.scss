@@ -2,9 +2,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+$toolbar-height: 4rem;
 
 ::ng-deep {
     mat-toolbar {
+        height: $toolbar-height;
+
         .nav-spacer {
             display: flex;
             flex-grow: 2;
@@ -45,4 +48,9 @@
     .mat-datepicker-toggle {
         color: theme('colors.quinary');
     }
+}
+
+.main-content {
+    max-height: calc(100vh - $toolbar-height);
+    height: calc(100vh - $toolbar-height);
 }

@@ -1,5 +1,5 @@
 <mat-tab-group *ngIf="activityCategories.length" color="secondary" [selectedIndex]="selectedTabIndex"
-    (selectedIndexChange)="onTabIndexChanged($event)" animationDuration="0ms" class="w-full h-fit max-w-full">
+    (selectedIndexChange)="onTabIndexChanged($event)" animationDuration="0ms" class="w-full max-w-full h-fit">
     <mat-tab *ngFor="let categ of activityCategories; let index = index">
         <ng-template mat-tab-label>
             <mat-icon [title]="categ.name">{{getCategoryIconName(categ.code)}}</mat-icon>
@@ -26,7 +26,7 @@
 
             <mat-card-content [ngClass]="i%2==0 ? 'bg-gray-100 border-b-gray-300' : ''">
                 <p>{{activity.description}}</p>
-                <span class="font-light italic flex justify-end">
+                <span class="font-light italic flex justify-end" *ngIf="activity.cost">
                     À partir de {{activity.cost}}€
                     <mat-icon class="material-icons-outlined mt-auto text-base" #tooltip="matTooltip"
                         matTooltip="Ce prix est une estimation du coût total. Cela peut ne pas refléter la réalité."
