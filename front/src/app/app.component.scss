@@ -7,6 +7,8 @@ $toolbar-height: 4rem;
 ::ng-deep {
     mat-toolbar {
         height: $toolbar-height;
+        background-color: theme("colors.quinary") !important;
+        border-bottom: 2px solid theme("colors.primary") !important;
 
         .nav-spacer {
             display: flex;
@@ -18,6 +20,14 @@ $toolbar-height: 4rem;
 
             button {
                 font-size: 1rem !important;
+                color: white !important;
+
+                mat-icon {
+                    color: theme("colors.primary") !important;
+                    font-size: 1.5rem !important;
+                    height: 1.5rem !important;
+                    width: 1.5rem !important;
+                }
 
                 &:hover {
                     mat-icon {
@@ -25,11 +35,6 @@ $toolbar-height: 4rem;
                     }
                 }
 
-                mat-icon {
-                    font-size: 1.5rem !important;
-                    height: 1.5rem !important;
-                    width: 1.5rem !important;
-                }
             }
         }
     }
