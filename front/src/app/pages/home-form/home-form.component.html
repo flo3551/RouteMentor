@@ -67,43 +67,63 @@
                         <mat-icon fontIcon="gite" class="text-quinary"></mat-icon>
                     </span>
                     <mat-select [formControl]="tripDetailsForm.controls.interests" multiple>
-                        <mat-option [value]="interests.NAT">
+                        <mat-option
+                            [disabled]="tripDetailsForm.get('interests')!.value?.length! >= 3 && !tripDetailsForm.get('interests')!.value?.includes(interests.NAT)"
+                            [value]="interests.NAT">
                             <mat-icon [fontIcon]="activityCategoryIcon.NAT"></mat-icon>
                             <span class="text-sm">{{interests.NAT.split('(')[0]}}</span>
                         </mat-option>
-                        <mat-option [value]="interests.CUL">
+                        <mat-option
+                            [disabled]="tripDetailsForm.get('interests')!.value?.length! >= 3 && !tripDetailsForm.get('interests')!.value?.includes(interests.CUL)"
+                            [value]="interests.CUL">
                             <mat-icon [fontIcon]="activityCategoryIcon.CUL"></mat-icon>
                             <span class="text-sm">{{interests.CUL.split('(')[0]}}</span>
                         </mat-option>
-                        <mat-option [value]="interests.GAS">
+                        <mat-option
+                            [disabled]="tripDetailsForm.get('interests')!.value?.length! >= 3 && !tripDetailsForm.get('interests')!.value?.includes(interests.GAS)"
+                            [value]="interests.GAS">
                             <mat-icon [fontIcon]="activityCategoryIcon.GAS"></mat-icon>
                             <span class="text-sm">{{interests.GAS.split('(')[0]}}</span>
                         </mat-option>
-                        <mat-option [value]="interests.VNO">
+                        <mat-option
+                            [disabled]="tripDetailsForm.get('interests')!.value?.length! >= 3 && !tripDetailsForm.get('interests')!.value?.includes(interests.VNO)"
+                            [value]="interests.VNO">
                             <mat-icon [fontIcon]="activityCategoryIcon.VNO"></mat-icon>
                             <span class="text-sm">{{interests.VNO.split('(')[0]}}</span>
                         </mat-option>
-                        <mat-option [value]="interests.SPT">
+                        <mat-option
+                            [disabled]="tripDetailsForm.get('interests')!.value?.length! >= 3 && !tripDetailsForm.get('interests')!.value?.includes(interests.SPT)"
+                            [value]="interests.SPT">
                             <mat-icon [fontIcon]="activityCategoryIcon.SPT"></mat-icon>
                             <span class="text-sm">{{interests.SPT.split('(')[0]}}</span>
                         </mat-option>
-                        <mat-option [value]="interests.DET">
+                        <mat-option
+                            [disabled]="tripDetailsForm.get('interests')!.value?.length! >= 3 && !tripDetailsForm.get('interests')!.value?.includes(interests.DET)"
+                            [value]="interests.DET">
                             <mat-icon [fontIcon]="activityCategoryIcon.DET"></mat-icon>
                             <span class="text-sm">{{interests.DET.split('(')[0]}}</span>
                         </mat-option>
-                        <mat-option [value]="interests.SHO">
+                        <mat-option
+                            [disabled]="tripDetailsForm.get('interests')!.value?.length! >= 3 && !tripDetailsForm.get('interests')!.value?.includes(interests.SHO)"
+                            [value]="interests.SHO">
                             <mat-icon [fontIcon]="activityCategoryIcon.SHO"></mat-icon>
                             <span class="text-sm">{{interests.SHO.split('(')[0]}}</span>
                         </mat-option>
-                        <mat-option [value]="interests.EVS">
+                        <mat-option
+                            [disabled]="tripDetailsForm.get('interests')!.value?.length! >= 3 && !tripDetailsForm.get('interests')!.value?.includes(interests.EVS)"
+                            [value]="interests.EVS">
                             <mat-icon [fontIcon]="activityCategoryIcon.EVS"></mat-icon>
                             <span class="text-sm">{{interests.EVS.split('(')[0]}}</span>
                         </mat-option>
-                        <mat-option [value]="interests.FAM">
+                        <mat-option
+                            [disabled]="tripDetailsForm.get('interests')!.value?.length! >= 3 && !tripDetailsForm.get('interests')!.value?.includes(interests.FAM)"
+                            [value]="interests.FAM">
                             <mat-icon [fontIcon]="activityCategoryIcon.FAM"></mat-icon>
                             <span class="text-sm">{{interests.FAM.split('(')[0]}}</span>
                         </mat-option>
-                        <mat-option [value]="interests.ARC">
+                        <mat-option
+                            [disabled]="tripDetailsForm.get('interests')!.value?.length! >= 3 && !tripDetailsForm.get('interests')!.value?.includes(interests.ARC)"
+                            [value]="interests.ARC">
                             <mat-icon [fontIcon]="activityCategoryIcon.ARC"></mat-icon>
                             <span class="text-sm">{{interests.ARC.split('(')[0]}}</span>
                         </mat-option>
