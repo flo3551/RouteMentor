@@ -16,7 +16,7 @@ export class OpenAiService {
             model: "text-davinci-003",
             prompt: prompt,
             temperature: 0.7,
-            max_tokens: 3000,
+            max_tokens: 3500,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
@@ -27,7 +27,16 @@ export class OpenAiService {
                     return Promise.reject(resultObject.finish_reason);
                 }
 
-                return JSON.parse(resultObject.text);
+                const regex = /\{.*\}/s;
+                const resultat = resultObject.text.match(regex);
+
+                if (resultat) {
+                    const jsonExtract = resultat[0];
+
+                    return JSON.parse(jsonExtract);
+                } else {
+                    return Promise.reject("Aucun JSON trouvé dans la réponse.");
+                }
             })
     }
 

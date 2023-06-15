@@ -5,11 +5,21 @@
             <mat-icon [title]="categ.name">{{getCategoryIconName(categ.code)}}</mat-icon>
         </ng-template>
 
-        <div *ngIf="!selectedStepActivitiesByCateg.length" class="mt-8 h-24">
+        <div class="mt-8 text-center" *ngIf="activitiesLoading">
+            <div class="flex w-full justify-center mb-2">
+                <mat-progress-spinner mode="indeterminate" diameter="40">
+                </mat-progress-spinner>
+            </div>
+            <p class="text-sm font-light">
+                Récupération des activités en cours...
+            </p>
+            <p class="text-xs font-light">
+                (Veuillez patienter 1-2 minutes)
+            </p>
+        </div>
+
+        <div *ngIf="!selectedStepActivitiesByCateg.length && !activitiesLoading" class="mt-8 h-24">
             <p>Aucune activité trouvée.</p>
-            <!-- <button mat-button color="primary" (click)="onClickSearchActivitiesButton()">
-                Chercher des activités
-            </button> -->
         </div>
 
         <mat-card class="activity-card w-full flex mx-auto"
@@ -34,6 +44,13 @@
                 </span>
             </mat-card-content>
         </mat-card>
+
+        <button *ngIf="selectedStepActivitiesByCateg.length < 3 && !activitiesLoading" mat-button color="primary"
+            (click)="onClickSearchActivitiesButton()" class="mt-2">
+            <span class="text-quinary h-full">
+                Chercher des activités
+            </span>
+        </button>
 
         <button mat-button (click)="onClickShowAllActivitiesButton()"
             *ngIf="!showAllActivities && selectedStepActivitiesByCateg.length > 3" class="mt-2">

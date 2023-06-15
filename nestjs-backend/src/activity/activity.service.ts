@@ -14,17 +14,22 @@ export class ActivityService {
         @Inject('DATA_SOURCE') private dataSource: DataSource,
         private cityService: CityService) { }
 
-    getCitiesFromListHavingActivities(cities: string[], categories: { name: string, code: string }[]) {
+    getCitiesFromListHavingActivitiesByCateg(cities: string[], categories: { name: string, code: string }[]) {
         let categoriesCode = categories.map(categorie => categorie.code);
+
         const query = this.activityRepository
             .createQueryBuilder("activity")
             .select("city.name")
             .addSelect("COUNT(activity.id)", "activityCount")
+            .addSelect("activitycategory.code")
+            .addSelect("activitycategory.name")
             .innerJoin("activity.city", "city")
             .innerJoin("activity.category", "activitycategory")
             .where("city.name IN (:...cities)", { cities })
             .andWhere("activitycategory.code IN (:...categoriesCode)", { categoriesCode })
             .groupBy("city.name")
+            .addGroupBy("activitycategory.code")
+            .addGroupBy("activitycategory.name")
             .having("COUNT(activity.id) > 0")
 
         return query.getRawMany();
@@ -56,7 +61,7 @@ export class ActivityService {
             });
     }
 
-    async addNewActivitiesTransactionnal(activities: Activity[]) {
+    async saveActivitiesTransactionnal(activities: Activity[]) {
         const queryRunner = this.dataSource.createQueryRunner();
         await queryRunner.startTransaction();
 

@@ -15,32 +15,32 @@ import { TripCreatorService } from './../../services/trip-creator.service';
 })
 export class TripResultComponent {
   trip: Trip;
-  previousStep: TripStep | null;
   selectedStep: TripStep;
-  nextStep: TripStep | null;
   activitiesLoading: boolean = false;
   showDetails = false;
   isMobile = environment.platform.isMobile;
 
   constructor(private tripCreatorService: TripCreatorService, private router: Router, private dialog: MatDialog) {
     this.trip = this.router.getCurrentNavigation()?.extras?.state?.["trip"];
-    this.previousStep = null;
     this.selectedStep = this.trip.steps[0];
-    this.nextStep = this.trip.steps[1];
 
-    this.activitiesLoading = true;
     this.dialog.open(WarningDialogComponent);
 
+    this.activitiesLoading = true;
     this.tripCreatorService.getActivities(this.trip.steps, this.trip.activitiesCategories)
       .then((results: TripStep[]) => {
         this.trip.steps = results;
         this.selectedStep = this.trip.steps[0];
-        this.nextStep = this.trip.steps[1];
+      })
+      .finally(() => {
         this.activitiesLoading = false;
       })
-      .catch(() => {
-        this.activitiesLoading = false;
-      })
+  }
+
+  onSelectedStepUpdated(step: TripStep) {
+    if (step) {
+      this.trip.steps[step.orderNumber - 1] = step;
+    }
   }
 
   onClickMenuStepButton(index: any) {
@@ -51,10 +51,6 @@ export class TripResultComponent {
   handleStepMarkerClicked(event: any) {
     this.selectedStep = event;
     this.showDetails = true;
-  }
-
-  onSearchNewActivities() {
-    this.activitiesLoading = true;
   }
 
   onTapShowDetails() {

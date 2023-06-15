@@ -3,6 +3,8 @@ import { ActivityCategoryIcon } from 'src/app/enums/activitycategory-icons.enum'
 import { ActivityCategory } from 'src/app/models/ActivityCategory';
 import { StepActivity } from 'src/app/models/StepActivity';
 import { TripStep } from 'src/app/models/TripStep';
+import { threadId } from 'worker_threads';
+import { TripCreatorService } from './../../services/trip-creator.service';
 
 @Component({
   selector: 'app-step-activity-list',
@@ -12,11 +14,16 @@ import { TripStep } from 'src/app/models/TripStep';
 export class StepActivityListComponent {
   @Input('selectedStep') selectedStep!: TripStep;
   @Input('activityCategories') activityCategories!: ActivityCategory[];
-  @Output('searchForActivity') searchForActivity: EventEmitter<any> = new EventEmitter();
+  @Input('activitiesLoading') activitiesLoading: boolean = false;
+  @Output('updateStepActivities') updateStepActivities: EventEmitter<any> = new EventEmitter();
   selectedStepActivitiesByCateg!: StepActivity[];
   selectedActivitiesCategory!: ActivityCategory;
   selectedTabIndex!: number;
   showAllActivities = false;
+
+  constructor(private tripCreatorService: TripCreatorService) {
+    this.activitiesLoading = true;
+  }
 
   ngOnChanges() {
     this.updateTabs();
@@ -50,15 +57,28 @@ export class StepActivityListComponent {
   }
 
   onClickSearchActivitiesButton() {
-    //TODO: Find why missing activities. If not a bug, request backend to create new activities.
-    this.searchForActivity.emit();
+    this.activitiesLoading = true;
+
+    this.tripCreatorService.getNewActivities(this.selectedStep, this.activityCategories)
+      .then((step) => {
+        this.selectedStep = step;
+        this.updateTabs();
+        this.updateStepActivities.emit(step);
+      })
+      .catch(() => {
+        this.updateStepActivities.emit(null);
+      })
+      .finally(() => {
+        this.activitiesLoading = false;
+      })
   }
 
   onClickShowAllActivitiesButton() {
     this.showAllActivities = true;
   }
 
+
   getActivitiesToDisplay() {
-    return this.showAllActivities ? this.selectedStepActivitiesByCateg : this.selectedStepActivitiesByCateg.slice(0,3);
+    return this.showAllActivities ? this.selectedStepActivitiesByCateg : this.selectedStepActivitiesByCateg.slice(0, 3);
   }
 }

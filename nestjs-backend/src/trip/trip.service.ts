@@ -8,7 +8,7 @@ export class TripService {
         + "As a backend server, you'll respond with an inline and no linebreak JSON object. No verbose, no explanation. JSON Object must match given format : ";
     private tripFormatPrompt = "{\"path\": [{\"id\": number, \"orderNumber\": number, \"date\": string, \"from\": string, \"to\": string, \"toCountry\": string, \"transportType\": string, \"cost\": integer, \"travelDuration\": integer, \"hostingName\": string, \"hostingCost\": integer}]} "
         + "where id starts at 1 if not given, orderNumber is the number of the step, starting at 1 and travelDuration is the time in hours between \"from\" and \"to\" cities in the transportType given. ";
-    private tripVariablePrompt = "As a Travel guide backend, you'll provide interesting cities to visit, and as mush steps as possible to match user dates criteria and still having time to enjoy each city. "
+    private tripVariablePrompt = "As a Travel guide backend, you'll provide interesting cities to visit, and as mush steps as possible to match user dates criteria and still having time to enjoy each city. Maximum 6 steps (cities) "
         + "The journey must not pass in the same city twice. The route must be well designed and logical so as not to retrace your steps"
         + "Users inputs: Départ le #dateDeparture# de #cityDeparture#, arrivée le #dateArrival# à #cityArrival#. #nbAdults# adultes, #nbChilds# enfant(s). "
         + "Budget total de #budget#€. Déplacements #transportType#. Hébergement #hostings#.";
