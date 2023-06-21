@@ -2,8 +2,8 @@
     <ng-container *ngIf="!environment.platform.isMobile">
         <!-- Toolbar pour desktop -->
         <mat-toolbar class="flex h-16 justify-between p-0 md:p-8">
-            <span class="chewy-font text-primary item-start">
-                <img src="/assets/img/logo_navbar.png" />
+            <span class="chewy-font text-primary item-start cursor-pointer" routerLink="/">
+                <img src="/assets/img/logo_navbar.png"/>
             </span>
             <span class="nav-spacer"></span>
             <div class="flex buttons-container justify-around">
@@ -31,7 +31,7 @@
     <ng-container *ngIf="environment.platform.isMobile">
         <!-- Toolbar pour mobile -->
         <mat-toolbar class="h-16 justify-between p-0 md:p-8">
-            <span class="chewy-font text-primary item-start ml-2">
+            <span class="chewy-font text-primary item-start ml-2" routerLink="/">
                 <img src="/assets/img/logo_navbar.png" />
             </span>
             <span class="nav-spacer"></span>

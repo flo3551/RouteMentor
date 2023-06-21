@@ -8,6 +8,13 @@
 }
 
 ::ng-deep {
+    #menuButton {
+        position:absolute;
+        border: 1px solid;
+        background-color: whitesmoke;
+        bottom: 0.5rem;
+        left: 0.5rem;
+    }
 
     #showDetailsButton.mdc-button {
         padding: 0 !important;

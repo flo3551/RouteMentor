@@ -35,6 +35,7 @@ import { StepActivityListComponent } from './components/step-activity-list/step-
 import { HomeFormComponent } from './pages/home-form/home-form.component';
 import { TripResultComponent } from './pages/trip-result/trip-result.component';
 import { WarningDialogComponent } from './components/warning-dialog/warning-dialog.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { WarningDialogComponent } from './components/warning-dialog/warning-dial
     MatDialogModule,
     MatTabsModule,
     MatSelectModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatMenuModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },

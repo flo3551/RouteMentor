@@ -48,6 +48,10 @@ export class TripResultComponent {
     this.showDetails = true;
   }
 
+  onClickRestartButton() {
+    this.router.navigateByUrl("/");
+  }
+
   handleStepMarkerClicked(event: any) {
     this.selectedStep = event;
     this.showDetails = true;
