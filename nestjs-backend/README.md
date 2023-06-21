@@ -22,5 +22,5 @@ Run `npm run start:debug` for a dev server.
 
     * openai.api.ts
         ```
-            export const OPENAI_ACCESS_TOKEN = "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";
+            export const OPENAI_ACCESS_TOKEN = "YOUR_API_KEY";
         ```
